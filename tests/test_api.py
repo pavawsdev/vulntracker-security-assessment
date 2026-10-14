@@ -260,3 +260,41 @@ def test_share_token_not_stored_in_plaintext():
     db.close()
     assert link.token_hash != share_token
     assert len(link.token_hash) == 64
+
+
+# ---------------------------------------------------------------------------
+# Remediation regression tests
+# ---------------------------------------------------------------------------
+
+# F1: injection payloads return no rows and can't reach other users' data or the users table
+def test_search_sql_injection_is_neutralised():
+    token = register_and_login(username="carol", email="carol@example.com")
+    client.post("/scans", json={"title": "Carol finding", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(token))
+    for payload in ["zz' OR '1'='1",
+                    "zz' UNION SELECT id,username,hashed_password,email,'x','x','x',0,created_at FROM users--"]:
+        resp = client.get("/scans/search", params={"q": payload}, headers=auth_headers(token))
+        assert resp.status_code == 200
+        assert resp.json()["results"] == []
+
+
+# F1: search only returns the caller's own scans
+def test_search_is_scoped_to_owner():
+    owner = register_and_login(username="dave", email="dave@example.com")
+    client.post("/scans", json={"title": "shared-term dave", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(owner))
+    other = register_and_login(username="erin", email="erin@example.com")
+    client.post("/scans", json={"title": "shared-term erin", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(other))
+    resp = client.get("/scans/search", params={"q": "shared-term"}, headers=auth_headers(other))
+    titles = [r["title"] for r in resp.json()["results"]]
+    assert titles == ["shared-term erin"]
+
+
+# F1: LIKE wildcards in user input are treated literally, not as match-all
+def test_search_wildcards_are_escaped():
+    token = register_and_login(username="frank", email="frank@example.com")
+    client.post("/scans", json={"title": "real finding", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(token))
+    resp = client.get("/scans/search", params={"q": "%%"}, headers=auth_headers(token))
+    assert resp.json()["results"] == []
