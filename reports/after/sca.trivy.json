@@ -1,0 +1,4098 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.75.0"
+  },
+  "ReportID": "01a13b07-6343-7357-b0ca-34174ed216e4",
+  "CreatedAt": "2026-10-14T20:58:22.3392189+05:30",
+  "ArtifactID": "sha256:c3bc14600e6355189e21cb5f6a70ecf5b9770cd6256100e4fd37c9c8144e5617",
+  "ArtifactName": ".",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/pavawsdev/vulntracker-security-assessment.git",
+    "Branch": "security/remediation",
+    "Commit": "4f2263d80073b2b4d177911550ed21fe9a6db9d8",
+    "CommitMsg": "Harden Helm chart: namespace, image digest, pull policy (F13)\n\n- Add a configurable namespace (default vulntracker) applied to every\n  resource, so manifests no longer render into the default namespace.\n- Deploy the image by immutable digest instead of a mutable tag.\n- Set imagePullPolicy to Always.\n\nCheckov now reports 96 passed / 0 failed (was 90/6).",
+    "Author": "pavawsdev \u003cpavawsdev@gmail.com\u003e",
+    "Committer": "pavawsdev \u003cpavawsdev@gmail.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "notify/package-lock.json",
+      "Class": "lang-pkgs",
+      "Type": "npm",
+      "Packages": [
+        {
+          "ID": "axios@1.16.0",
+          "Name": "axios",
+          "Identifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "Version": "1.16.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "follow-redirects@1.16.0",
+            "form-data@4.0.6",
+            "proxy-from-env@2.1.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 35,
+              "EndLine": 45
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "express@4.21.2",
+          "Name": "express",
+          "Identifier": {
+            "PURL": "pkg:npm/express@4.21.2",
+            "UID": "4814658f2a1f3f0e"
+          },
+          "Version": "4.21.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "accepts@1.3.8",
+            "array-flatten@1.1.1",
+            "body-parser@1.20.3",
+            "content-disposition@0.5.4",
+            "content-type@1.0.5",
+            "cookie-signature@1.0.6",
+            "cookie@0.7.1",
+            "debug@2.6.9",
+            "depd@2.0.0",
+            "encodeurl@2.0.0",
+            "escape-html@1.0.3",
+            "etag@1.8.1",
+            "finalhandler@1.3.1",
+            "fresh@0.5.2",
+            "http-errors@2.0.0",
+            "merge-descriptors@1.0.3",
+            "methods@1.1.2",
+            "on-finished@2.4.1",
+            "parseurl@1.3.3",
+            "path-to-regexp@0.1.12",
+            "proxy-addr@2.0.7",
+            "qs@6.13.0",
+            "range-parser@1.2.1",
+            "safe-buffer@5.2.1",
+            "send@0.19.0",
+            "serve-static@1.16.2",
+            "setprototypeof@1.2.0",
+            "statuses@2.0.1",
+            "type-is@1.6.18",
+            "utils-merge@1.0.1",
+            "vary@1.1.2"
+          ],
+          "Locations": [
+            {
+              "StartLine": 262,
+              "EndLine": 307
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "uuid@9.0.0",
+          "Name": "uuid",
+          "Identifier": {
+            "PURL": "pkg:npm/uuid@9.0.0",
+            "UID": "eb268c13c53a2f79"
+          },
+          "Version": "9.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 873,
+              "EndLine": 879
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "accepts@1.3.8",
+          "Name": "accepts",
+          "Identifier": {
+            "PURL": "pkg:npm/accepts@1.3.8",
+            "UID": "16687b4e791bf4ad"
+          },
+          "Version": "1.3.8",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "mime-types@2.1.35",
+            "negotiator@0.6.3"
+          ],
+          "Locations": [
+            {
+              "StartLine": 16,
+              "EndLine": 26
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "array-flatten@1.1.1",
+          "Name": "array-flatten",
+          "Identifier": {
+            "PURL": "pkg:npm/array-flatten@1.1.1",
+            "UID": "9d844df9729614bc"
+          },
+          "Version": "1.1.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 27,
+              "EndLine": 30
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "asynckit@0.4.0",
+          "Name": "asynckit",
+          "Identifier": {
+            "PURL": "pkg:npm/asynckit@0.4.0",
+            "UID": "43c2221066dc134b"
+          },
+          "Version": "0.4.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 31,
+              "EndLine": 34
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "body-parser@1.20.3",
+          "Name": "body-parser",
+          "Identifier": {
+            "PURL": "pkg:npm/body-parser@1.20.3",
+            "UID": "604e906425478ab8"
+          },
+          "Version": "1.20.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "bytes@3.1.2",
+            "content-type@1.0.5",
+            "debug@2.6.9",
+            "depd@2.0.0",
+            "destroy@1.2.0",
+            "http-errors@2.0.0",
+            "iconv-lite@0.4.24",
+            "on-finished@2.4.1",
+            "qs@6.13.0",
+            "raw-body@2.5.2",
+            "type-is@1.6.18",
+            "unpipe@1.0.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 46,
+              "EndLine": 69
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "bytes@3.1.2",
+          "Name": "bytes",
+          "Identifier": {
+            "PURL": "pkg:npm/bytes@3.1.2",
+            "UID": "2dd22b8517cb27c7"
+          },
+          "Version": "3.1.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 70,
+              "EndLine": 78
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "call-bind-apply-helpers@1.0.2",
+          "Name": "call-bind-apply-helpers",
+          "Identifier": {
+            "PURL": "pkg:npm/call-bind-apply-helpers@1.0.2",
+            "UID": "8d0735d5ce6947fc"
+          },
+          "Version": "1.0.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "es-errors@1.3.0",
+            "function-bind@1.1.2"
+          ],
+          "Locations": [
+            {
+              "StartLine": 79,
+              "EndLine": 89
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "call-bound@1.0.4",
+          "Name": "call-bound",
+          "Identifier": {
+            "PURL": "pkg:npm/call-bound@1.0.4",
+            "UID": "ab639cdf67f7daac"
+          },
+          "Version": "1.0.4",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "call-bind-apply-helpers@1.0.2",
+            "get-intrinsic@1.3.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 90,
+              "EndLine": 105
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "combined-stream@1.0.8",
+          "Name": "combined-stream",
+          "Identifier": {
+            "PURL": "pkg:npm/combined-stream@1.0.8",
+            "UID": "67d7da1a5b1977ba"
+          },
+          "Version": "1.0.8",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "delayed-stream@1.0.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 106,
+              "EndLine": 115
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "content-disposition@0.5.4",
+          "Name": "content-disposition",
+          "Identifier": {
+            "PURL": "pkg:npm/content-disposition@0.5.4",
+            "UID": "658c716b7b111b5f"
+          },
+          "Version": "0.5.4",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "safe-buffer@5.2.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 116,
+              "EndLine": 125
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "content-type@1.0.5",
+          "Name": "content-type",
+          "Identifier": {
+            "PURL": "pkg:npm/content-type@1.0.5",
+            "UID": "e181ade4fcba20b5"
+          },
+          "Version": "1.0.5",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 126,
+              "EndLine": 134
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "cookie@0.7.1",
+          "Name": "cookie",
+          "Identifier": {
+            "PURL": "pkg:npm/cookie@0.7.1",
+            "UID": "8bee185859d1bab4"
+          },
+          "Version": "0.7.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 135,
+              "EndLine": 143
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "cookie-signature@1.0.6",
+          "Name": "cookie-signature",
+          "Identifier": {
+            "PURL": "pkg:npm/cookie-signature@1.0.6",
+            "UID": "fc47f6605e4bce2f"
+          },
+          "Version": "1.0.6",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 144,
+              "EndLine": 147
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "debug@2.6.9",
+          "Name": "debug",
+          "Identifier": {
+            "PURL": "pkg:npm/debug@2.6.9",
+            "UID": "66237b8067b55e31"
+          },
+          "Version": "2.6.9",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "ms@2.0.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 148,
+              "EndLine": 156
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "delayed-stream@1.0.0",
+          "Name": "delayed-stream",
+          "Identifier": {
+            "PURL": "pkg:npm/delayed-stream@1.0.0",
+            "UID": "a194689a583e78a3"
+          },
+          "Version": "1.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 157,
+              "EndLine": 163
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "depd@2.0.0",
+          "Name": "depd",
+          "Identifier": {
+            "PURL": "pkg:npm/depd@2.0.0",
+            "UID": "aea6c8a1eec398bc"
+          },
+          "Version": "2.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 164,
+              "EndLine": 172
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "destroy@1.2.0",
+          "Name": "destroy",
+          "Identifier": {
+            "PURL": "pkg:npm/destroy@1.2.0",
+            "UID": "933f23a5453b0e53"
+          },
+          "Version": "1.2.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 173,
+              "EndLine": 182
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "dunder-proto@1.0.1",
+          "Name": "dunder-proto",
+          "Identifier": {
+            "PURL": "pkg:npm/dunder-proto@1.0.1",
+            "UID": "bd053be55eddf323"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "call-bind-apply-helpers@1.0.2",
+            "es-errors@1.3.0",
+            "gopd@1.2.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 183,
+              "EndLine": 194
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "ee-first@1.1.1",
+          "Name": "ee-first",
+          "Identifier": {
+            "PURL": "pkg:npm/ee-first@1.1.1",
+            "UID": "24ef310127116575"
+          },
+          "Version": "1.1.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 195,
+              "EndLine": 200
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "encodeurl@1.0.2",
+          "Name": "encodeurl",
+          "Identifier": {
+            "PURL": "pkg:npm/encodeurl@1.0.2",
+            "UID": "8480c5356f50b767"
+          },
+          "Version": "1.0.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 718,
+              "EndLine": 726
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "encodeurl@2.0.0",
+          "Name": "encodeurl",
+          "Identifier": {
+            "PURL": "pkg:npm/encodeurl@2.0.0",
+            "UID": "d1186015a03170c2"
+          },
+          "Version": "2.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 201,
+              "EndLine": 209
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "es-define-property@1.0.1",
+          "Name": "es-define-property",
+          "Identifier": {
+            "PURL": "pkg:npm/es-define-property@1.0.1",
+            "UID": "3dabdf3d552afa6c"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 210,
+              "EndLine": 216
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "es-errors@1.3.0",
+          "Name": "es-errors",
+          "Identifier": {
+            "PURL": "pkg:npm/es-errors@1.3.0",
+            "UID": "1c97109d6d5f063e"
+          },
+          "Version": "1.3.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 217,
+              "EndLine": 223
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "es-object-atoms@1.1.2",
+          "Name": "es-object-atoms",
+          "Identifier": {
+            "PURL": "pkg:npm/es-object-atoms@1.1.2",
+            "UID": "83acd9c1bd46f7cf"
+          },
+          "Version": "1.1.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "es-errors@1.3.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 224,
+              "EndLine": 233
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "es-set-tostringtag@2.1.0",
+          "Name": "es-set-tostringtag",
+          "Identifier": {
+            "PURL": "pkg:npm/es-set-tostringtag@2.1.0",
+            "UID": "87db3304e2307881"
+          },
+          "Version": "2.1.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "es-errors@1.3.0",
+            "get-intrinsic@1.3.0",
+            "has-tostringtag@1.0.2",
+            "hasown@2.0.4"
+          ],
+          "Locations": [
+            {
+              "StartLine": 234,
+              "EndLine": 246
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "escape-html@1.0.3",
+          "Name": "escape-html",
+          "Identifier": {
+            "PURL": "pkg:npm/escape-html@1.0.3",
+            "UID": "87159f80c20fdec8"
+          },
+          "Version": "1.0.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 247,
+              "EndLine": 252
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "etag@1.8.1",
+          "Name": "etag",
+          "Identifier": {
+            "PURL": "pkg:npm/etag@1.8.1",
+            "UID": "d613233f54d07179"
+          },
+          "Version": "1.8.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 253,
+              "EndLine": 261
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "finalhandler@1.3.1",
+          "Name": "finalhandler",
+          "Identifier": {
+            "PURL": "pkg:npm/finalhandler@1.3.1",
+            "UID": "736ba9418d890b73"
+          },
+          "Version": "1.3.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "debug@2.6.9",
+            "encodeurl@2.0.0",
+            "escape-html@1.0.3",
+            "on-finished@2.4.1",
+            "parseurl@1.3.3",
+            "statuses@2.0.1",
+            "unpipe@1.0.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 308,
+              "EndLine": 325
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "follow-redirects@1.16.0",
+          "Name": "follow-redirects",
+          "Identifier": {
+            "PURL": "pkg:npm/follow-redirects@1.16.0",
+            "UID": "90c68d2353b9fd5"
+          },
+          "Version": "1.16.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 326,
+              "EndLine": 343
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "form-data@4.0.6",
+          "Name": "form-data",
+          "Identifier": {
+            "PURL": "pkg:npm/form-data@4.0.6",
+            "UID": "cf9f0d30c4fad996"
+          },
+          "Version": "4.0.6",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "asynckit@0.4.0",
+            "combined-stream@1.0.8",
+            "es-set-tostringtag@2.1.0",
+            "hasown@2.0.4",
+            "mime-types@2.1.35"
+          ],
+          "Locations": [
+            {
+              "StartLine": 344,
+              "EndLine": 357
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "forwarded@0.2.0",
+          "Name": "forwarded",
+          "Identifier": {
+            "PURL": "pkg:npm/forwarded@0.2.0",
+            "UID": "2602dd750a957416"
+          },
+          "Version": "0.2.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 358,
+              "EndLine": 364
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "fresh@0.5.2",
+          "Name": "fresh",
+          "Identifier": {
+            "PURL": "pkg:npm/fresh@0.5.2",
+            "UID": "5752f8884316360f"
+          },
+          "Version": "0.5.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 365,
+              "EndLine": 373
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "function-bind@1.1.2",
+          "Name": "function-bind",
+          "Identifier": {
+            "PURL": "pkg:npm/function-bind@1.1.2",
+            "UID": "f888616e6fa2ae18"
+          },
+          "Version": "1.1.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 374,
+              "EndLine": 380
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "get-intrinsic@1.3.0",
+          "Name": "get-intrinsic",
+          "Identifier": {
+            "PURL": "pkg:npm/get-intrinsic@1.3.0",
+            "UID": "e84785ac8559e2e6"
+          },
+          "Version": "1.3.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "call-bind-apply-helpers@1.0.2",
+            "es-define-property@1.0.1",
+            "es-errors@1.3.0",
+            "es-object-atoms@1.1.2",
+            "function-bind@1.1.2",
+            "get-proto@1.0.1",
+            "gopd@1.2.0",
+            "has-symbols@1.1.0",
+            "hasown@2.0.4",
+            "math-intrinsics@1.1.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 381,
+              "EndLine": 402
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "get-proto@1.0.1",
+          "Name": "get-proto",
+          "Identifier": {
+            "PURL": "pkg:npm/get-proto@1.0.1",
+            "UID": "6852bdb77b33e32b"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "dunder-proto@1.0.1",
+            "es-object-atoms@1.1.2"
+          ],
+          "Locations": [
+            {
+              "StartLine": 403,
+              "EndLine": 413
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "gopd@1.2.0",
+          "Name": "gopd",
+          "Identifier": {
+            "PURL": "pkg:npm/gopd@1.2.0",
+            "UID": "c0daedfcd7cdd633"
+          },
+          "Version": "1.2.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 414,
+              "EndLine": 423
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "has-symbols@1.1.0",
+          "Name": "has-symbols",
+          "Identifier": {
+            "PURL": "pkg:npm/has-symbols@1.1.0",
+            "UID": "9c9977e6e476aec"
+          },
+          "Version": "1.1.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 424,
+              "EndLine": 433
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "has-tostringtag@1.0.2",
+          "Name": "has-tostringtag",
+          "Identifier": {
+            "PURL": "pkg:npm/has-tostringtag@1.0.2",
+            "UID": "566a21309ece7d98"
+          },
+          "Version": "1.0.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "has-symbols@1.1.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 434,
+              "EndLine": 446
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "hasown@2.0.4",
+          "Name": "hasown",
+          "Identifier": {
+            "PURL": "pkg:npm/hasown@2.0.4",
+            "UID": "5d1138637ce8b319"
+          },
+          "Version": "2.0.4",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "function-bind@1.1.2"
+          ],
+          "Locations": [
+            {
+              "StartLine": 447,
+              "EndLine": 456
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "http-errors@2.0.0",
+          "Name": "http-errors",
+          "Identifier": {
+            "PURL": "pkg:npm/http-errors@2.0.0",
+            "UID": "522fbdb6b0879f07"
+          },
+          "Version": "2.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "depd@2.0.0",
+            "inherits@2.0.4",
+            "setprototypeof@1.2.0",
+            "statuses@2.0.1",
+            "toidentifier@1.0.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 457,
+              "EndLine": 472
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "iconv-lite@0.4.24",
+          "Name": "iconv-lite",
+          "Identifier": {
+            "PURL": "pkg:npm/iconv-lite@0.4.24",
+            "UID": "5657ae6088cfa230"
+          },
+          "Version": "0.4.24",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "safer-buffer@2.1.2"
+          ],
+          "Locations": [
+            {
+              "StartLine": 473,
+              "EndLine": 484
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "inherits@2.0.4",
+          "Name": "inherits",
+          "Identifier": {
+            "PURL": "pkg:npm/inherits@2.0.4",
+            "UID": "eab4efe6bc94d769"
+          },
+          "Version": "2.0.4",
+          "Licenses": [
+            "ISC"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 485,
+              "EndLine": 490
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "ipaddr.js@1.9.1",
+          "Name": "ipaddr.js",
+          "Identifier": {
+            "PURL": "pkg:npm/ipaddr.js@1.9.1",
+            "UID": "55050122e16983f5"
+          },
+          "Version": "1.9.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 491,
+              "EndLine": 497
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "math-intrinsics@1.1.0",
+          "Name": "math-intrinsics",
+          "Identifier": {
+            "PURL": "pkg:npm/math-intrinsics@1.1.0",
+            "UID": "fc4f000d15981c7d"
+          },
+          "Version": "1.1.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 498,
+              "EndLine": 504
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "media-typer@0.3.0",
+          "Name": "media-typer",
+          "Identifier": {
+            "PURL": "pkg:npm/media-typer@0.3.0",
+            "UID": "846a2e5175085777"
+          },
+          "Version": "0.3.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 505,
+              "EndLine": 513
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "merge-descriptors@1.0.3",
+          "Name": "merge-descriptors",
+          "Identifier": {
+            "PURL": "pkg:npm/merge-descriptors@1.0.3",
+            "UID": "3c2a445c8c858af8"
+          },
+          "Version": "1.0.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 514,
+              "EndLine": 522
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "methods@1.1.2",
+          "Name": "methods",
+          "Identifier": {
+            "PURL": "pkg:npm/methods@1.1.2",
+            "UID": "d6d49796a55059c8"
+          },
+          "Version": "1.1.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 523,
+              "EndLine": 529
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "mime@1.6.0",
+          "Name": "mime",
+          "Identifier": {
+            "PURL": "pkg:npm/mime@1.6.0",
+            "UID": "77b697b271012ee3"
+          },
+          "Version": "1.6.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 530,
+              "EndLine": 541
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "mime-db@1.52.0",
+          "Name": "mime-db",
+          "Identifier": {
+            "PURL": "pkg:npm/mime-db@1.52.0",
+            "UID": "640333a3dd6e6ce"
+          },
+          "Version": "1.52.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 542,
+              "EndLine": 548
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "mime-types@2.1.35",
+          "Name": "mime-types",
+          "Identifier": {
+            "PURL": "pkg:npm/mime-types@2.1.35",
+            "UID": "e08e4227d3696245"
+          },
+          "Version": "2.1.35",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "mime-db@1.52.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 549,
+              "EndLine": 558
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "ms@2.0.0",
+          "Name": "ms",
+          "Identifier": {
+            "PURL": "pkg:npm/ms@2.0.0",
+            "UID": "c88ff55bb74bd6dd"
+          },
+          "Version": "2.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 559,
+              "EndLine": 564
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "ms@2.1.3",
+          "Name": "ms",
+          "Identifier": {
+            "PURL": "pkg:npm/ms@2.1.3",
+            "UID": "a0055d91e3d3c4e8"
+          },
+          "Version": "2.1.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 727,
+              "EndLine": 732
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "negotiator@0.6.3",
+          "Name": "negotiator",
+          "Identifier": {
+            "PURL": "pkg:npm/negotiator@0.6.3",
+            "UID": "bfede119dabef50"
+          },
+          "Version": "0.6.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 565,
+              "EndLine": 571
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "object-inspect@1.13.4",
+          "Name": "object-inspect",
+          "Identifier": {
+            "PURL": "pkg:npm/object-inspect@1.13.4",
+            "UID": "3c70629f4c89e31b"
+          },
+          "Version": "1.13.4",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 572,
+              "EndLine": 583
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "on-finished@2.4.1",
+          "Name": "on-finished",
+          "Identifier": {
+            "PURL": "pkg:npm/on-finished@2.4.1",
+            "UID": "3a33ddae3fd3d77d"
+          },
+          "Version": "2.4.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "ee-first@1.1.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 584,
+              "EndLine": 595
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "parseurl@1.3.3",
+          "Name": "parseurl",
+          "Identifier": {
+            "PURL": "pkg:npm/parseurl@1.3.3",
+            "UID": "43c4252d7cfd273a"
+          },
+          "Version": "1.3.3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 596,
+              "EndLine": 604
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "path-to-regexp@0.1.12",
+          "Name": "path-to-regexp",
+          "Identifier": {
+            "PURL": "pkg:npm/path-to-regexp@0.1.12",
+            "UID": "cd5e2f17f46f6ef3"
+          },
+          "Version": "0.1.12",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 605,
+              "EndLine": 610
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "proxy-addr@2.0.7",
+          "Name": "proxy-addr",
+          "Identifier": {
+            "PURL": "pkg:npm/proxy-addr@2.0.7",
+            "UID": "6983a8beda52150"
+          },
+          "Version": "2.0.7",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "forwarded@0.2.0",
+            "ipaddr.js@1.9.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 611,
+              "EndLine": 621
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "proxy-from-env@2.1.0",
+          "Name": "proxy-from-env",
+          "Identifier": {
+            "PURL": "pkg:npm/proxy-from-env@2.1.0",
+            "UID": "6582093782dd9a94"
+          },
+          "Version": "2.1.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 622,
+              "EndLine": 630
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "qs@6.13.0",
+          "Name": "qs",
+          "Identifier": {
+            "PURL": "pkg:npm/qs@6.13.0",
+            "UID": "45b4678b356cb09e"
+          },
+          "Version": "6.13.0",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "side-channel@1.1.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 631,
+              "EndLine": 645
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "range-parser@1.2.1",
+          "Name": "range-parser",
+          "Identifier": {
+            "PURL": "pkg:npm/range-parser@1.2.1",
+            "UID": "4079cd023db81a07"
+          },
+          "Version": "1.2.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 646,
+              "EndLine": 654
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "raw-body@2.5.2",
+          "Name": "raw-body",
+          "Identifier": {
+            "PURL": "pkg:npm/raw-body@2.5.2",
+            "UID": "31c99b113e9dc5ee"
+          },
+          "Version": "2.5.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "bytes@3.1.2",
+            "http-errors@2.0.0",
+            "iconv-lite@0.4.24",
+            "unpipe@1.0.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 655,
+              "EndLine": 669
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "safe-buffer@5.2.1",
+          "Name": "safe-buffer",
+          "Identifier": {
+            "PURL": "pkg:npm/safe-buffer@5.2.1",
+            "UID": "edc2225885b47c45"
+          },
+          "Version": "5.2.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 670,
+              "EndLine": 687
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "safer-buffer@2.1.2",
+          "Name": "safer-buffer",
+          "Identifier": {
+            "PURL": "pkg:npm/safer-buffer@2.1.2",
+            "UID": "feddd332cd496688"
+          },
+          "Version": "2.1.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 688,
+              "EndLine": 693
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "send@0.19.0",
+          "Name": "send",
+          "Identifier": {
+            "PURL": "pkg:npm/send@0.19.0",
+            "UID": "4bedcba7502fd627"
+          },
+          "Version": "0.19.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "debug@2.6.9",
+            "depd@2.0.0",
+            "destroy@1.2.0",
+            "encodeurl@1.0.2",
+            "escape-html@1.0.3",
+            "etag@1.8.1",
+            "fresh@0.5.2",
+            "http-errors@2.0.0",
+            "mime@1.6.0",
+            "ms@2.1.3",
+            "on-finished@2.4.1",
+            "range-parser@1.2.1",
+            "statuses@2.0.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 694,
+              "EndLine": 717
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "serve-static@1.16.2",
+          "Name": "serve-static",
+          "Identifier": {
+            "PURL": "pkg:npm/serve-static@1.16.2",
+            "UID": "4e3ae37b9a3d761b"
+          },
+          "Version": "1.16.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "encodeurl@2.0.0",
+            "escape-html@1.0.3",
+            "parseurl@1.3.3",
+            "send@0.19.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 733,
+              "EndLine": 747
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "setprototypeof@1.2.0",
+          "Name": "setprototypeof",
+          "Identifier": {
+            "PURL": "pkg:npm/setprototypeof@1.2.0",
+            "UID": "d81c4404e6996333"
+          },
+          "Version": "1.2.0",
+          "Licenses": [
+            "ISC"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 748,
+              "EndLine": 753
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "side-channel@1.1.1",
+          "Name": "side-channel",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel@1.1.1",
+            "UID": "2e280924a3582de4"
+          },
+          "Version": "1.1.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "es-errors@1.3.0",
+            "object-inspect@1.13.4",
+            "side-channel-list@1.0.1",
+            "side-channel-map@1.0.1",
+            "side-channel-weakmap@1.0.2"
+          ],
+          "Locations": [
+            {
+              "StartLine": 754,
+              "EndLine": 772
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "side-channel-list@1.0.1",
+          "Name": "side-channel-list",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel-list@1.0.1",
+            "UID": "c329ad4faa093db2"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "es-errors@1.3.0",
+            "object-inspect@1.13.4"
+          ],
+          "Locations": [
+            {
+              "StartLine": 773,
+              "EndLine": 788
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "side-channel-map@1.0.1",
+          "Name": "side-channel-map",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel-map@1.0.1",
+            "UID": "97b2e9858e3c1076"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "call-bound@1.0.4",
+            "es-errors@1.3.0",
+            "get-intrinsic@1.3.0",
+            "object-inspect@1.13.4"
+          ],
+          "Locations": [
+            {
+              "StartLine": 789,
+              "EndLine": 806
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "side-channel-weakmap@1.0.2",
+          "Name": "side-channel-weakmap",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel-weakmap@1.0.2",
+            "UID": "b176671abeb09da0"
+          },
+          "Version": "1.0.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "call-bound@1.0.4",
+            "es-errors@1.3.0",
+            "get-intrinsic@1.3.0",
+            "object-inspect@1.13.4",
+            "side-channel-map@1.0.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 807,
+              "EndLine": 825
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "statuses@2.0.1",
+          "Name": "statuses",
+          "Identifier": {
+            "PURL": "pkg:npm/statuses@2.0.1",
+            "UID": "2bcceef1be778c31"
+          },
+          "Version": "2.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 826,
+              "EndLine": 834
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "toidentifier@1.0.1",
+          "Name": "toidentifier",
+          "Identifier": {
+            "PURL": "pkg:npm/toidentifier@1.0.1",
+            "UID": "eec0a929284a6fc3"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 835,
+              "EndLine": 843
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "type-is@1.6.18",
+          "Name": "type-is",
+          "Identifier": {
+            "PURL": "pkg:npm/type-is@1.6.18",
+            "UID": "36bda4d0377319cf"
+          },
+          "Version": "1.6.18",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "media-typer@0.3.0",
+            "mime-types@2.1.35"
+          ],
+          "Locations": [
+            {
+              "StartLine": 844,
+              "EndLine": 856
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "unpipe@1.0.0",
+          "Name": "unpipe",
+          "Identifier": {
+            "PURL": "pkg:npm/unpipe@1.0.0",
+            "UID": "896eca900c88f052"
+          },
+          "Version": "1.0.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 857,
+              "EndLine": 865
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "utils-merge@1.0.1",
+          "Name": "utils-merge",
+          "Identifier": {
+            "PURL": "pkg:npm/utils-merge@1.0.1",
+            "UID": "91df8c2e2a4dc5d8"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 866,
+              "EndLine": 872
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "vary@1.1.2",
+          "Name": "vary",
+          "Identifier": {
+            "PURL": "pkg:npm/vary@1.1.2",
+            "UID": "beeb2c3c203def4e"
+          },
+          "Version": "1.1.2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 880,
+              "EndLine": 886
+            }
+          ],
+          "AnalyzedBy": "npm"
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-101898",
+          "VendorIDs": [
+            "GHSA-3pq3-5fj3-cg6v"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101898",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:64df44ce22a63efd7caba3f58425d35ee24244cf04777b32da4291f95c04d491",
+          "Title": "axios: axios: Security control bypass via unapplied HTTP/2 proxy and DNS settings",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.13.0 until 1.20.0, Axios HTTP/2 request setup does not consistently apply proxy settings and caller-supplied DNS lookup policy. An HTTPS request uses httpVersion: 2 with explicit config.proxy or environment-derived proxy settings, or relies on caller-supplied config.lookup DNS policy. The HTTP/2 path can connect without the configured proxy behavior or without applying the caller-supplied config.lookup policy before http2.connect(). Requests can bypass the intended proxy route or the caller-supplied DNS resolution policy. This issue is fixed in version 1.20.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-918"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:H/SA:N",
+              "V40Score": 7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 4.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101898",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-3pq3-5fj3-cg6v",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101898",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101898"
+          ],
+          "PublishedDate": "2026-09-28T18:17:17.86Z",
+          "LastModifiedDate": "2026-09-30T19:38:27.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101901",
+          "VendorIDs": [
+            "GHSA-542g-h47m-68v8"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101901",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:161ae37df25abd612df962443ba6016582f504a3275505eedb52f1b76ea5e122",
+          "Title": "axios: Axios: Denial of Service via unhandled error in HTTP/2 session initialization",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.13.0 until 1.20.0, Http2Sessions does not install adequate error handling for a ClientHttp2Session during Axios HTTP/2 session initialization or reuse. A request uses httpVersion: 2 and the ClientHttp2Session emits an error during session initialization or reuse. The unhandled session error escapes normal Promise rejection handling. The uncaught error can terminate the Node.js process and cause denial of service. This issue is fixed in version 1.20.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+              "V40Score": 8.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101901",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-542g-h47m-68v8",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101901",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101901"
+          ],
+          "PublishedDate": "2026-09-28T18:17:18.233Z",
+          "LastModifiedDate": "2026-10-01T15:17:24.077Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101905",
+          "VendorIDs": [
+            "GHSA-m8m8-qj5v-23w3"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101905",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:6aab78c5f4e9a0ea3f441aa55b9e7d847b4097b06c8e1125e8d34906a0eca76e",
+          "Title": "axios: axios: Request socket hijacking via inherited createConnection property",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.15.2 until 1.20.0, the Node HTTP adapter in lib/adapters/http.js supplies request options without an own createConnection value. A separate same-process prototype-pollution flaw places a function on Object.prototype.createConnection. Node resolves and invokes the inherited createConnection socket factory, allowing the attacker-controlled function to select the transport endpoint. The attacker endpoint can receive request headers and bodies, including credentials, and return attacker-controlled responses while the URL appears legitimate. This issue is fixed in version 1.20.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-441",
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+              "V40Score": 7.6
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101905",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-m8m8-qj5v-23w3",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101905",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101905"
+          ],
+          "PublishedDate": "2026-09-28T18:17:18.923Z",
+          "LastModifiedDate": "2026-10-01T15:17:24.257Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101906",
+          "VendorIDs": [
+            "GHSA-mghh-pgcx-3jjj"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101906",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:5d4c6136efc05b6c42af8acc020dffee4a112949d0a9e7f415e2b1d67462847f",
+          "Title": "axios: axios: Denial of Service via crafted redirect hostname",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.15.0 until 1.20.0, Axios shouldBypassProxy applies a quadratic trailing-dot regular expression to redirect hostnames. HTTP_PROXY or HTTPS_PROXY is configured, NO_PROXY or no_proxy is non-empty, redirects are followed, and a crafted redirect Location contains many dots followed by a non-dot character. Hostname.replace(/.+$/, '') backtracks quadratically while processing the crafted redirect hostname. Synchronous regular-expression processing can block the Node.js event loop and cause denial of service. This issue is fixed in version 1.20.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400",
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+              "V40Score": 8.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101906",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-mghh-pgcx-3jjj",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101906",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101906"
+          ],
+          "PublishedDate": "2026-09-28T18:17:19.1Z",
+          "LastModifiedDate": "2026-09-30T19:38:27.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101909",
+          "VendorIDs": [
+            "GHSA-x97p-jq2g-jp4f"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.34.0, 1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101909",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:897c635159a9f01d4e648f27eff7fa0b5fa7424ccde640f57829eb93f767b646",
+          "Title": "axios: axios: Denial of Service via prototype pollution gadget in form serialization",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 0.28.0 until 0.34.0 and 1.15.1 until 1.20.0, ToFormData processes inherited serialization options and visitor properties supplied through prototype pollution. A separate same-process prototype-pollution flaw supplies inherited dots, indexes, metaTokens, maxDepth, visitor, or Blob values before object serialization. The inherited options alter toFormData field naming and data interpretation, maxDepth can force request failure, Blob changes value handling, and a polluted visitor can execute when an attacker already has the stronger ability to inject a function. Serialized field naming and data interpretation can change, maxDepth can cause request failure, Blob can alter value handling, and a polluted visitor can execute under the stronger function-injection primitive. This issue is fixed in versions 0.34.0 and 1.20.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:H/SC:N/SI:N/SA:N",
+              "V40Score": 8.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:H",
+              "V3Score": 8.2
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101909",
+            "https://advisory.echohq.com/cve/CVE-2026-101909",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/commit/d29be181f85f6fe93397a07b1f69606d9622637b",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v0.34.0",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-x97p-jq2g-jp4f",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101909",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101909"
+          ],
+          "PublishedDate": "2026-09-28T18:17:19.68Z",
+          "LastModifiedDate": "2026-10-01T15:17:24.67Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67320",
+          "VendorIDs": [
+            "GHSA-gcfj-64vw-6mp9"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.33.0, 1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67320",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:2231a93ed1fa84957cec4444c6f0c360e21105bdd364d531640c3f1d3aa4dacc",
+          "Title": "axios: axios: Information disclosure via Prototype Pollution in Node HTTP adapter",
+          "Description": "axios in a Node.js deployment using the HTTP adapter can route requests through an attacker-controlled proxy. axios hardens merged request configuration by creating a null-prototype object, but request interceptors run after the merge; a common immutable interceptor pattern such as {...config} or Object.assign({}, config) converts the hardened config back into a regular object. axios then dispatches that object without re-hardening it, and the Node HTTP adapter reads config.proxy through the prototype chain. If an attacker can pollute Object.prototype.proxy, affected requests can be routed through an attacker-controlled proxy. For plaintext HTTP requests, the proxy can observe Authorization headers, Basic auth from config.auth, method, absolute URL, Host, and request body, and can return its own response. This does not establish browser impact or HTTPS header/body disclosure under normal TLS validation. Affected versions are \u003e=0.31.1 (fixed in 0.33.0) and \u003e=1.15.2 (fixed in 1.18.0).",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N",
+              "V40Score": 8.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67320",
+            "https://advisory.echohq.com/cve/CVE-2026-67320",
+            "https://github.com/advisories/GHSA-gcfj-64vw-6mp9",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/commit/df53d7dd99b202fb194217abd127ae6a630e70dc",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-gcfj-64vw-6mp9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67320",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69124",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67320",
+            "https://www.vulncheck.com/advisories/axios-before-prototype-pollution-via-node-http-adapter"
+          ],
+          "PublishedDate": "2026-08-01T13:17:02.217Z",
+          "LastModifiedDate": "2026-09-01T15:39:00.08Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101899",
+          "VendorIDs": [
+            "GHSA-44g4-m2mj-wpvx"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101899",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:379795e18b71e39fd3ef578f48ffadf7d3c822c9944567317e12cac25878f992",
+          "Title": "axios: Axios: Information disclosure via improper CIDR proxy bypass handling",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.15.0 until 1.20.0, Axios shouldBypassProxy treats the NO_PROXY CIDR form as a textual hostname suffix instead of evaluating the network range. A request targets an address covered by a CIDR entry in NO_PROXY while a proxy is configured. The CIDR bypass rule is not matched, so the request is sent through the configured proxy. For plaintext HTTP, the proxy can observe and modify URLs, headers, and bodies; for HTTPS, it can observe connection metadata and CONNECT requests. This issue is fixed in version 1.20.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-693"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N",
+              "V40Score": 6.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101899",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-44g4-m2mj-wpvx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101899",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101899"
+          ],
+          "PublishedDate": "2026-10-13T16:17:09.173Z",
+          "LastModifiedDate": "2026-10-13T16:17:09.173Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101900",
+          "VendorIDs": [
+            "GHSA-4hqw-qxg8-jxx2"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101900",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:990d879f5fdc49399198f36c7c7a17712fc737f75fd0b37a358acc606943db2c",
+          "Title": "axios: Axios: Outbound HTTP header injection via prototype pollution in fetch adapter",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.12.0 until 1.20.0, ResolveConfig reads inherited Symbol.toStringTag, append, and getHeaders properties while resolving FormData headers. A separate same-process prototype-pollution flaw supplies an array or non-plain class instance whose inherited properties make it appear FormData-like; plain objects are blocked. The inherited getHeaders function can return attacker-controlled headers that resolveConfig merges into a fetch adapter request. Attacker-controlled headers can alter authorization, cache, metadata-service, or application-specific request behavior. This issue is fixed in version 1.20.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-74",
+            "CWE-693",
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:L/SI:H/SA:N",
+              "V40Score": 6.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101900",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-4hqw-qxg8-jxx2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101900",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101900"
+          ],
+          "PublishedDate": "2026-09-28T18:17:18.05Z",
+          "LastModifiedDate": "2026-09-30T19:38:27.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101902",
+          "VendorIDs": [
+            "GHSA-9fr6-4gfg-395g"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.34.0, 1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101902",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:496cd8c3e6db4413aedfe480781a900646903f93821a6fb3784fa0174d45908f",
+          "Title": "axios: axios: Unintended HTTP method override via prototype pollution gadget",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 0.27.2 until 0.34.0 and 1.20.0, Axios default-instance requests that omit an explicit method can read an inherited method value from Object.prototype. If another vulnerability in the same process pollutes Object.prototype.method, calls such as axios.request({ url }) and axios({ url }) can send a state-changing HTTP method instead of the expected default GET. Axios does not create the prototype pollution source. This is a read-side gadget in axios request dispatch. This issue is fixed in version 0.34.0 and 1.20.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:H/SA:N",
+              "V40Score": 6.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101902",
+            "https://advisory.echohq.com/cve/CVE-2026-101902",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v0.34.0",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-9fr6-4gfg-395g",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101902",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101902"
+          ],
+          "PublishedDate": "2026-09-28T18:17:18.397Z",
+          "LastModifiedDate": "2026-09-30T19:38:27.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101904",
+          "VendorIDs": [
+            "GHSA-j8rh-479h-cp32"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101904",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:769fda5178c5ded76e8a0262b6c21d42ea084d2bbfa5d1194ef350fb5b159bc8",
+          "Title": "axios: Axios: HTTP header injection via inherited prototype properties",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.0.0 until 1.20.0, the dispatchRequest function normalizes inherited Object.prototype.headers from a replacement request configuration. A separate same-process prototype-pollution flaw sets Object.prototype.headers, and trusted request interceptors return a new ordinary configuration without an own headers property. After the interceptor chain, dispatchRequest resolves the inherited headers during normalization. Downstream request processing can observe attacker-controlled headers, including authorization-related values. This issue is fixed in version 1.20.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-74",
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:L/SI:H/SA:N",
+              "V40Score": 6.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101904",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-j8rh-479h-cp32",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101904",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101904"
+          ],
+          "PublishedDate": "2026-09-28T18:17:18.74Z",
+          "LastModifiedDate": "2026-09-30T19:38:27.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-101908",
+          "VendorIDs": [
+            "GHSA-vh66-26gq-q6x8"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.20.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-101908",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:10c5ba88a51cbe93ded6ac0aefc8e779270b853da9e41ba6fa9a50c67af8a03f",
+          "Title": "axios: Axios: Outbound HTTP request manipulation via fetch adapter prototype pollution",
+          "Description": "Axios is a promise-based HTTP client for the browser and Node.js. From 1.7.0 until 1.20.0, the fetch adapter constructs a Request with sanitized resolvedOptions but then calls fetch with the original fetchOptions. A separate same-process prototype-pollution flaw populates Object.prototype.headers so fetchOptions.headers resolves through inheritance. The inherited fetchOptions.headers value overrides the sanitized Request headers through the second argument to fetch after Request construction. Attacker-controlled request headers can alter authorization, caching, metadata-service access, or application-specific behavior. This issue is fixed in version 1.20.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:L/SI:H/SA:N",
+              "V40Score": 6.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-101908",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/d19040bda7a8be2f82c3c6e1a5bc03917daee39a",
+            "https://github.com/axios/axios/pull/11141",
+            "https://github.com/axios/axios/releases/tag/v1.20.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-vh66-26gq-q6x8",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-101908",
+            "https://www.cve.org/CVERecord?id=CVE-2026-101908"
+          ],
+          "PublishedDate": "2026-09-28T18:17:19.44Z",
+          "LastModifiedDate": "2026-09-30T19:38:27.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67312",
+          "VendorIDs": [
+            "GHSA-pmv8-rq9r-6j72"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.33.0, 1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67312",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:97a3ed674c95ffe35303d87d171e714232597ad933a4518d193546bf79aa99e9",
+          "Title": "axios: axios: Denial of Service via uncontrolled recursion in form data processing",
+          "Description": "axios versions from 0.28.0 before 0.33.0 and from 1.0.0 before 1.18.0 contain uncontrolled recursion in formDataToJSON (exposed as axios.formToJSON() and used internally when serializing FormData with Content-Type: application/json). When an application passes attacker-controlled FormData field names, a field name with thousands of nested bracket-delimited segments causes unbounded recursion in buildPath(), exhausting the JavaScript call stack (RangeError: Maximum call stack size exceeded) and causing denial of service for that request, or process termination in applications without appropriate error handling.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67312",
+            "https://advisory.echohq.com/cve/CVE-2026-67312",
+            "https://github.com/advisories/GHSA-pmv8-rq9r-6j72",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-pmv8-rq9r-6j72",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67312",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68941",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67312",
+            "https://www.vulncheck.com/advisories/axios-before-denial-of-service-via-formtojson"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.15Z",
+          "LastModifiedDate": "2026-09-01T15:40:58.137Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67313",
+          "VendorIDs": [
+            "GHSA-42h9-826w-cgv3"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.33.0, 1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67313",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:90fab07ec12ee4fdeb7b6a82f5c1dee9029516c8bdcafbcf593d076d19509b11",
+          "Title": "axios versions 0.28.0 and later contain uncontrolled recursion in form ...",
+          "Description": "axios versions 0.28.0 and later contain uncontrolled recursion in formDataToJSON when processing FormData field names with deeply nested bracket segments. Attackers can supply FormData with field names containing thousands of nested brackets to exhaust the JavaScript call stack and trigger RangeError, causing request failure or process termination in applications that do not handle the exception.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://advisory.echohq.com/cve/CVE-2026-67313",
+            "https://github.com/advisories/GHSA-42h9-826w-cgv3",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-42h9-826w-cgv3",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67313",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68942",
+            "https://www.vulncheck.com/advisories/axios-before-denial-of-service-via-formdatatojson"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.283Z",
+          "LastModifiedDate": "2026-09-01T15:40:52.167Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67314",
+          "VendorIDs": [
+            "GHSA-xj6q-8x83-jv6g"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67314",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:e2653af533f3b4298774d9dd5955688d2b3c2c52bbde98b193f2351f0002195b",
+          "Title": "axios: axios: Outbound Request Tampering via Prototype Pollution in Basic Auth",
+          "Description": "axios versions \u003e=1.15.2 and \u003c1.18.0 contain prototype-pollution read-side gadgets in Basic auth subfield handling (lib/adapters/http.js and lib/helpers/resolveConfig.js). When an application is already affected by a separate prototype-pollution primitive and makes an axios request with an own auth object that omits the username and/or password properties, axios reads the inherited Object.prototype.username and Object.prototype.password values and uses them to construct an outbound 'Authorization: Basic ...' header. axios itself does not pollute prototypes. The practical impact is outbound request tampering: an attacker who controls the polluted prototype values can inject attacker-chosen Basic auth credentials or replace an existing Authorization header. Credential disclosure is only possible under additional application-specific conditions.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:L/SC:N/SI:N/SA:N",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L",
+              "V3Score": 6.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67314",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-xj6q-8x83-jv6g",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67314",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67314",
+            "https://www.vulncheck.com/advisories/axios-before-prototype-pollution-via-auth-subfields"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.407Z",
+          "LastModifiedDate": "2026-09-01T15:40:20.437Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67315",
+          "VendorIDs": [
+            "GHSA-f4gw-2p7v-4548"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.18.0, 0.33.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67315",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:551f5b764fb0a7d439a1476e6855175f3a59528c1d32a616e3f8a089a8e9d9ef",
+          "Title": "axios: axios: NO_PROXY bypass allows exposure of local services",
+          "Description": "axios versions 0.31.0 before 0.33.0 and 1.15.0 before 1.18.0 fail to recognize 0.0.0.0 as a loopback address in shouldBypassProxy.js, allowing requests to 0.0.0.0 to bypass NO_PROXY rules. Attackers can supply 0.0.0.0 URLs to route requests through configured proxies, potentially exposing local services when the proxy can reach the destination.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-183"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N",
+              "V40Score": 6.9
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N",
+              "V3Score": 5.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67315",
+            "https://advisory.echohq.com/cve/CVE-2026-67315",
+            "https://github.com/advisories/GHSA-f4gw-2p7v-4548",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-f4gw-2p7v-4548",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67315",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68946",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67315",
+            "https://www.vulncheck.com/advisories/axios-before-no-proxy-bypass-via"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.54Z",
+          "LastModifiedDate": "2026-09-01T15:40:08.977Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67316",
+          "VendorIDs": [
+            "GHSA-mmx7-hfxf-jppx"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.18.0, 0.33.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67316",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:d6e1b4102a07f49ee6904667e8867f238960b07fefd0e0545e0f8d020d3e34af",
+          "Title": "axios: axios: Prototype Pollution allows unauthorized data transmission and network redirection",
+          "Description": "axios is vulnerable to read-side prototype-pollution gadgets that can alter request construction when Object.prototype has already been polluted by a separate vulnerability or dependency. In the bodyless method aliases (axios.get(), axios.delete(), axios.head(), axios.options()), inherited data is read via (config || {}).data before config normalization, causing an attacker-controlled body to be sent on requests that did not set one. Additional low-level paths, only reachable when calling exported adapters/helpers (e.g. lib/adapters/http.js, unsafe/helpers/resolveConfig.js) directly with plain configs and no own proxy or paramsSerializer, can inherit polluted proxy values (routing requests through an attacker-controlled proxy) or paramsSerializer values (attacker-controlled URL serialization). These low-level gadgets do not reproduce through normal high-level axios calls on 1.15.2+. The issue is fixed in axios 1.18.0 and 0.33.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 1
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 3.7
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67316",
+            "https://advisory.echohq.com/cve/CVE-2026-67316",
+            "https://github.com/advisories/GHSA-mmx7-hfxf-jppx",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-mmx7-hfxf-jppx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67316",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68944",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67316",
+            "https://www.vulncheck.com/advisories/axios-before-prototype-pollution-via-bodyless-methods"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.673Z",
+          "LastModifiedDate": "2026-09-01T15:40:01.88Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67317",
+          "VendorIDs": [
+            "GHSA-jqh4-m9w3-8hp9"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67317",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:3ee8e5ac12911c92b063b71b67cac0e32858d8021ae23b61e4a0f31c1c11bbec",
+          "Title": "axios: axios: Denial of Service via maxBodyLength bypass with ReadableStream",
+          "Description": "axios versions 1.7.0 before 1.18.0 fail to enforce maxBodyLength for WHATWG ReadableStream request bodies in the fetch adapter when Content-Length cannot be determined. Attackers can supply unknown-length stream data to bypass upload size limits and cause uncontrolled network egress or resource exhaustion.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67317",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-jqh4-m9w3-8hp9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67317",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68947",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67317",
+            "https://www.vulncheck.com/advisories/axios-before-maxbodylength-bypass-via-readablestream"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.817Z",
+          "LastModifiedDate": "2026-09-01T15:39:55.143Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67318",
+          "VendorIDs": [
+            "GHSA-mwf2-3pr3-8698"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67318",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:532f30772a98cd3b396d1c5c858906d8b55579156a0abb16af7557a70893ee6e",
+          "Title": "axios: axios: Denial of Service due to maxBodyLength bypass in HTTP/2 requests",
+          "Description": "axios versions \u003e=1.13.0 (Node.js HTTP adapter) fail to enforce the configured maxBodyLength limit on streamed request bodies when requests are sent with httpVersion: 2. Because Node's HTTP/2 request API does not honor the maxBodyLength option and axios's byte-counting stream wrapper is gated on maxRedirects === 0, an attacker who controls a stream passed to axios can cause the application to transmit outbound data exceeding the configured finite maxBodyLength. Impact is limited to resource consumption and policy bypass (excess egress, upstream quota consumption, limited availability); it does not enable code execution, credential disclosure, or request-destination control. Calls using the default maxBodyLength: -1 and browser adapters are not affected.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67318",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-mwf2-3pr3-8698",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67318",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68948",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67318",
+            "https://www.vulncheck.com/advisories/axios-before-maxbodylength-bypass-via-http-2"
+          ],
+          "PublishedDate": "2026-08-01T13:17:01.947Z",
+          "LastModifiedDate": "2026-09-01T15:39:49.073Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67319",
+          "VendorIDs": [
+            "GHSA-7q8q-rj6j-mhjq"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.33.0, 1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67319",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:efe810d0bfddbf17ac69534c38ced89ed0db168096960d766771160b0b868766",
+          "Title": "axios: axios: Information disclosure and data manipulation via prototype pollution",
+          "Description": "axios before 0.33.0 (and 1.x before 1.18.0) can consume inherited properties from nested request option objects when the JavaScript process's Object.prototype has already been polluted by another component. While the top-level merged config uses a null prototype, nested plain objects such as auth and paramsSerializer are cloned into ordinary objects and read without own-property checks. When an application passes placeholder nested objects such as auth: {} or paramsSerializer: {}, inherited username/password values can cause silent injection of an Authorization: Basic header, and inherited encode/serialize values can alter query-string serialization (full serializer replacement requires a function-valued pollution primitive). This is exploitable only in the presence of pre-existing prototype pollution.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-1321"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 1,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:L/SA:N",
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 3.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67319",
+            "https://advisory.echohq.com/cve/CVE-2026-67319",
+            "https://github.com/advisories/GHSA-7q8q-rj6j-mhjq",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-7q8q-rj6j-mhjq",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67319",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69123",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67319",
+            "https://www.vulncheck.com/advisories/axios-before-prototype-pollution-via-nested-option-objects"
+          ],
+          "PublishedDate": "2026-08-01T13:17:02.08Z",
+          "LastModifiedDate": "2026-09-01T15:39:26.203Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-67321",
+          "VendorIDs": [
+            "GHSA-hcpx-6fm6-wx23"
+          ],
+          "PkgID": "axios@1.16.0",
+          "PkgName": "axios",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.16.0",
+            "UID": "6b35a7b40a0647e8"
+          },
+          "InstalledVersion": "1.16.0",
+          "FixedVersion": "0.33.0, 1.18.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-67321",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:5b3bf58e69e9ef58bff22d7064663cc84952369dde44eca41f8af882e611af63",
+          "Title": "axios: axios: Denial of Service via object serialization bypass",
+          "Description": "axios versions 0.31.1 before 0.33.0 and 1.15.1 before 1.18.0 contain an incomplete depth-limit bypass in toFormData.js when serializing objects with top-level keys ending in '{}'. Attackers who control object keys and nested values passed to axios form or parameter serialization can trigger a RangeError from JSON.stringify, causing denial of service in the affected request path.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-674"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+              "V40Score": 6.9
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-67321",
+            "https://advisory.echohq.com/cve/CVE-2026-67321",
+            "https://github.com/advisories/GHSA-hcpx-6fm6-wx23",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/1417285c69344bbcc6420a021f67dee0c6fedb2d",
+            "https://github.com/axios/axios/commit/32fc489632377d214db55bfa4e2c48486a7d7ce2",
+            "https://github.com/axios/axios/pull/11000",
+            "https://github.com/axios/axios/pull/11001",
+            "https://github.com/axios/axios/releases/tag/v0.33.0",
+            "https://github.com/axios/axios/releases/tag/v1.18.0",
+            "https://github.com/axios/axios/security/advisories/GHSA-hcpx-6fm6-wx23",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67321",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69125",
+            "https://www.cve.org/CVERecord?id=CVE-2026-67321",
+            "https://www.vulncheck.com/advisories/axios-before-denial-of-service-via-maxdepth-bypass"
+          ],
+          "PublishedDate": "2026-08-01T13:17:02.36Z",
+          "LastModifiedDate": "2026-09-01T15:38:39.333Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-12590",
+          "VendorIDs": [
+            "GHSA-v422-hmwv-36x6"
+          ],
+          "PkgID": "body-parser@1.20.3",
+          "PkgName": "body-parser",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/body-parser@1.20.3",
+            "UID": "604e906425478ab8"
+          },
+          "InstalledVersion": "1.20.3",
+          "FixedVersion": "1.20.6, 2.3.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-12590",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:d7db17d1a05551de5e8a7d425aaf86759418b3393666791ce9dcbd06be96b338",
+          "Title": "body-parser: body-parser: Denial of Service via invalid limit option",
+          "Description": "Impact: In body-parser versions prior to 1.20.6 (1.x line) and 2.3.0 (2.x line), when the parser is configured with an invalid limit option value such as an unparseable string or NaN, bytes.parse returns null and the request body size check is silently skipped. Applications that rely on limit as their primary safeguard against oversized request bodies will accept arbitrarily large payloads, leading to excessive memory and CPU usage and denial of service. Patches: This issue is fixed in body-parser 1.20.6 and 2.3.0. After the fix, invalid limit values throw a clear error at parser construction time instead of silently disabling enforcement, while null and undefined continue to fall back to the default limit of 100kb. Workarounds: Validate the limit value before passing it to body-parser. For example, parse the value at startup and reject any configuration where the result is null or a non-finite number.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1,
+            "nvd": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 3.7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-12590",
+            "https://advisory.echohq.com/cve/CVE-2026-12590",
+            "https://cna.openjsf.org/security-advisories.html",
+            "https://github.com/expressjs/body-parser",
+            "https://github.com/expressjs/body-parser/commit/2322e111cc321413ec2b7b76d01be533d3de9d7d",
+            "https://github.com/expressjs/body-parser/commit/3492672eee593d5c158f239b6e9115498a5dbeac",
+            "https://github.com/expressjs/body-parser/pull/698",
+            "https://github.com/expressjs/body-parser/pull/741",
+            "https://github.com/expressjs/body-parser/releases/tag/1.20.6",
+            "https://github.com/expressjs/body-parser/releases/tag/v2.3.0",
+            "https://github.com/expressjs/body-parser/security/advisories/GHSA-v422-hmwv-36x6",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-12590",
+            "https://www.cve.org/CVERecord?id=CVE-2026-12590"
+          ],
+          "PublishedDate": "2026-07-09T11:16:24.67Z",
+          "LastModifiedDate": "2026-07-10T02:45:02.8Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-4867",
+          "VendorIDs": [
+            "GHSA-37ch-88jc-xwx2"
+          ],
+          "PkgID": "path-to-regexp@0.1.12",
+          "PkgName": "path-to-regexp",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/path-to-regexp@0.1.12",
+            "UID": "cd5e2f17f46f6ef3"
+          },
+          "InstalledVersion": "0.1.12",
+          "FixedVersion": "0.1.13",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-4867",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:aca08cb3ce5f80b4c388e8cbcc2b94ae6a9e365281386bf848b80693a35cf3c0",
+          "Title": "path-to-regexp: path-to-regexp: Denial of Service via catastrophic backtracking from malformed URL parameters",
+          "Description": "Impact:\n\nA bad regular expression is generated any time you have three or more parameters within a single segment, separated by something that is not a period (.). For example, /:a-:b-:c or /:a-:b-:c-:d. The backtrack protection added in path-to-regexp@0.1.12 only prevents ambiguity for two parameters. With three or more, the generated lookahead does not block single separator characters, so capture groups overlap and cause catastrophic backtracking.\n\nPatches:\n\nUpgrade to path-to-regexp@0.1.13\n\nCustom regex patterns in route definitions (e.g., /:a-:b([^-/]+)-:c([^-/]+)) are not affected because they override the default capture group.\n\nWorkarounds:\n\nAll versions can be patched by providing a custom regular expression for parameters after the first in a single segment. As long as the custom regular expression does not match the text before the parameter, you will be safe. For example, change /:a-:b-:c to /:a-:b([^-/]+)-:c([^-/]+).\n\nIf paths cannot be rewritten and versions cannot be upgraded, another alternative is to limit the URL length.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-4867",
+            "https://blakeembrey.com/posts/2024-09-web-redos",
+            "https://cna.openjsf.org/security-advisories.html",
+            "https://github.com/advisories/GHSA-9wv6-86v2-598j",
+            "https://github.com/pillarjs/path-to-regexp",
+            "https://github.com/pillarjs/path-to-regexp/releases/tag/v.0.1.13",
+            "https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-37ch-88jc-xwx2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-4867",
+            "https://www.cve.org/CVERecord?id=CVE-2026-4867"
+          ],
+          "PublishedDate": "2026-03-26T17:16:42.983Z",
+          "LastModifiedDate": "2026-06-17T10:57:21.827Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-90711",
+          "VendorIDs": [
+            "GHSA-jqcg-44mw-7w3h"
+          ],
+          "PkgID": "proxy-addr@2.0.7",
+          "PkgName": "proxy-addr",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/proxy-addr@2.0.7",
+            "UID": "6983a8beda52150"
+          },
+          "InstalledVersion": "2.0.7",
+          "FixedVersion": "2.0.8",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-90711",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:2e9ebeed971e3be5760e7c3be696622c8796690d17554cceb8f234912d354feb",
+          "Title": "proxy-addr: proxy-addr vulnerable to IP spoofing via IPv4-mapped IPv6 trust subnet",
+          "Description": "proxy-addr is a Node.js module that determines a request's client address behind trusted reverse proxies, and it backs Express req.ip and req.ips. In versions 1.1.0 through 2.0.7, a trust subnet written in IPv4-mapped IPv6 notation with an IPv4-sized prefix, such as ::ffff:10.0.0.0/8 instead of the correct ::ffff:10.0.0.0/104, is accepted without error but trusts every IPv4 address on the internet rather than the block it names. Because the socket peer then becomes trusted at hop 0, any unauthenticated client can supply an arbitrary X-Forwarded-For header and control the address the application reads, which defeats IP-based access control, rate limiting, geolocation, and audit logging. This is a fail-open regression introduced in version 1.1.0. The issue is fixed in proxy-addr 2.0.8, and users should upgrade to 2.0.8 or later. As a workaround, ensure any IPv4-mapped IPv6 trust subnet uses a prefix length of at least 97, or express the range in plain IPv4 notation.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-290",
+            "CWE-348",
+            "CWE-697"
+          ],
+          "VendorSeverity": {
+            "ghsa": 4,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 9.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-90711",
+            "https://advisory.echohq.com/cve/CVE-2026-90711",
+            "https://cna.openjsf.org/security-advisories.html",
+            "https://github.com/jshttp/proxy-addr",
+            "https://github.com/jshttp/proxy-addr/commit/780911d84d18e2c5fa008ed0c0d387631ec11965",
+            "https://github.com/jshttp/proxy-addr/releases/tag/v2.0.8",
+            "https://github.com/jshttp/proxy-addr/security/advisories/GHSA-jqcg-44mw-7w3h",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-90711",
+            "https://www.cve.org/CVERecord?id=CVE-2026-90711"
+          ],
+          "PublishedDate": "2026-09-15T07:16:33.683Z",
+          "LastModifiedDate": "2026-09-16T19:40:00.317Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-15284",
+          "VendorIDs": [
+            "GHSA-6rw7-vpxm-498p"
+          ],
+          "PkgID": "qs@6.13.0",
+          "PkgName": "qs",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/qs@6.13.0",
+            "UID": "45b4678b356cb09e"
+          },
+          "InstalledVersion": "6.13.0",
+          "FixedVersion": "6.14.1",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-15284",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:3c92c2f87f012a831b38c582efa6295e10bbf56a0f50fde05fd57eb72a763347",
+          "Title": "qs: qs: Denial of Service via improper input validation in array parsing",
+          "Description": "Improper Input Validation vulnerability in qs (parse modules) allows HTTP DoS.This issue affects qs: \u003c 6.14.1.\n\n\nSummary\n\nThe arrayLimit option in qs did not enforce limits for bracket notation (a[]=1\u0026a[]=2), only for indexed notation (a[0]=1). This is a consistency bug; arrayLimit should apply uniformly across all array notations.\n\nNote: The default parameterLimit of 1000 effectively mitigates the DoS scenario originally described. With default options, bracket notation cannot produce arrays larger than parameterLimit regardless of arrayLimit, because each a[]=valueconsumes one parameter slot. The severity has been reduced accordingly.\n\nDetails\n\nThe arrayLimit option only checked limits for indexed notation (a[0]=1\u0026a[1]=2) but did not enforce it for bracket notation (a[]=1\u0026a[]=2).\n\nVulnerable code (lib/parse.js:159-162):\n\nif (root === '[]' \u0026\u0026 options.parseArrays) {\n    obj = utils.combine([], leaf);  // No arrayLimit check\n}\n\n\n\n\n\nWorking code (lib/parse.js:175):\n\nelse if (index \u003c= options.arrayLimit) {  // Limit checked here\n    obj = [];\n    obj[index] = leaf;\n}\n\n\n\n\n\nThe bracket notation handler at line 159 uses utils.combine([], leaf) without validating against options.arrayLimit, while indexed notation at line 175 checks index \u003c= options.arrayLimit before creating arrays.\n\n\n\nPoC\n\nconst qs = require('qs');\nconst result = qs.parse('a[]=1\u0026a[]=2\u0026a[]=3\u0026a[]=4\u0026a[]=5\u0026a[]=6', { arrayLimit: 5 });\nconsole.log(result.a.length);  // Output: 6 (should be max 5)\n\n\n\n\n\nNote on parameterLimit interaction: The original advisory's \"DoS demonstration\" claimed a length of 10,000, but parameterLimit (default: 1000) caps parsing to 1,000 parameters. With default options, the actual output is 1,000, not 10,000.\n\nImpact\n\nConsistency bug in arrayLimit enforcement. With default parameterLimit, the practical DoS risk is negligible since parameterLimit already caps the total number of parsed parameters (and thus array elements from bracket notation). The risk increases only when parameterLimit is explicitly set to a very high value.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "ghsa": 2,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L",
+              "V3Score": 3.7,
+              "V40Score": 6.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:18480",
+            "https://access.redhat.com/errata/RHSA-2026:18868",
+            "https://access.redhat.com/security/cve/CVE-2025-15284",
+            "https://advisory.echohq.com/cve/CVE-2025-15284",
+            "https://bugzilla.redhat.com/2425946",
+            "https://bugzilla.redhat.com/2430538",
+            "https://bugzilla.redhat.com/2431036",
+            "https://bugzilla.redhat.com/2431740",
+            "https://bugzilla.redhat.com/2433645",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2425946",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2430538",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2431036",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2431740",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2433645",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-13465",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15284",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-23745",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-23950",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-24842",
+            "https://errata.almalinux.org/9/ALSA-2026-18868.html",
+            "https://errata.rockylinux.org/RLSA-2026:18480",
+            "https://github.com/advisories/GHSA-6rw7-vpxm-498p",
+            "https://github.com/ljharb/qs",
+            "https://github.com/ljharb/qs/commit/3086902ecf7f088d0d1803887643ac6c03d415b9",
+            "https://github.com/ljharb/qs/security/advisories/GHSA-6rw7-vpxm-498p",
+            "https://linux.oracle.com/cve/CVE-2025-15284.html",
+            "https://linux.oracle.com/errata/ELSA-2026-18868.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-15284",
+            "https://www.cve.org/CVERecord?id=CVE-2025-15284"
+          ],
+          "PublishedDate": "2025-12-29T23:15:42.703Z",
+          "LastModifiedDate": "2026-06-17T08:37:31.79Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-82417",
+          "VendorIDs": [
+            "GHSA-4mjr-xmp4-gh2g"
+          ],
+          "PkgID": "qs@6.13.0",
+          "PkgName": "qs",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/qs@6.13.0",
+            "UID": "45b4678b356cb09e"
+          },
+          "InstalledVersion": "6.13.0",
+          "FixedVersion": "6.16.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-82417",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:ec63e8e0d6a7d9fa55207a1346f688c18ce2e4382c932ac6c564e7babcbfe3d1",
+          "Title": "qs: qs: Denial of Service via improper validation in stringify function",
+          "Description": "### Summary\n\n\n\n`qs.stringify` throws a `TypeError` when it serializes an object whose own `constructor` property has a truthy, non-callable `isBuffer` member. `utils.isBuffer` duck-types buffers by calling `obj.constructor.isBuffer(obj)` after checking only that the property is truthy, so a value such as `{ constructor: { isBuffer: \"x\" } }` makes the call throw `TypeError: obj.constructor.isBuffer is not a function`.\n\n\n\n### Details\n\n\n\n`lib/stringify.js:127` calls `utils.isBuffer` on every non-primitive value it serializes. `utils.isBuffer` (`lib/utils.js:332`) reads `obj.constructor.isBuffer` and invokes it without verifying that it is a function. `constructor` and `isBuffer` are ordinary property names, so any object carrying them as own properties reaches the unchecked call.\n\n\n\nSuch an object can be built from untrusted input. `qs.parse(\"x[constructor][isBuffer]=y\", { plainObjects: true })` or `{ allowPrototypes: true }` keeps the `constructor` key as an own property (the default parse options drop it), and `JSON.parse(\"{\\\"a\\\":{\\\"constructor\\\":{\\\"isBuffer\\\":\\\"x\\\"}}}\")` produces the same shape with no qs option involved. Express 4 with its default `query parser` setting and body-parser with `extended: true` both call `qs.parse` with `allowPrototypes: true`, so on those stacks `req.query` and `req.body` can carry the shape directly.\n\n\n\n#### PoC\n\n\n\n```js\n\n\n\nvar qs = require(\"qs\");\n\n\n\nqs.stringify(qs.parse(\"x[constructor][isBuffer]=y\", { plainObjects: true }));\n\n\n\nqs.stringify(JSON.parse(\"{\\\"a\\\":{\\\"constructor\\\":{\\\"isBuffer\\\":\\\"x\\\"}}}\"));\n\n\n\n// TypeError: obj.constructor.isBuffer is not a function\n\n\n\n//     at Object.isBuffer (lib/utils.js:332:78)\n\n\n\n//     at stringify (lib/stringify.js:127:45)\n\n\n\n```\n\n\n\n#### Fix\n\n\n\n`lib/utils.js`, applied in e83d321 on `main` and released as v6.16.0:\n\n\n\n```diff\n\n\n\n- return !!(obj.constructor \u0026\u0026 obj.constructor.isBuffer \u0026\u0026 obj.constructor.isBuffer(obj));\n\n\n\n+ return !!(obj.constructor \u0026\u0026 typeof obj.constructor.isBuffer === \"function\" \u0026\u0026 obj.constructor.isBuffer(obj));\n\n\n\n```\n\n\n\nReal `Buffer`, `safer-buffer`, and browserify `buffer` polyfill instances serialize exactly as before; only the throw is removed.\n\n\n\n### Affected versions\n\n\n\n`\u003e=2.2.5 \u003c6.16.0`, fixed in v6.16.0.\n\n\n\nThe unguarded duck-type was introduced in 3768a75 and first shipped in v2.2.5 (September 2014). v2.2.4 and earlier used `Buffer.isBuffer` and are not affected. Every release from v2.2.5 through v6.15.3 contains the unguarded call.\n\n\n\n### Impact\n\n\n\nAn unauthenticated request can make any code path that re-serializes attacker-influenced data with `qs.stringify` (for example, rebuilding a query string from `req.query` for a redirect or an upstream request, or serializing a parsed JSON body) throw synchronously. In a typical Node.js HTTP framework the throw is caught by the framework error boundary and the affected request returns a 500; the process survives and other requests are unaffected. Where the call runs outside an error boundary, such as an `async` Express 4 handler (where the throw becomes an unhandled promise rejection) or a background job, the process exits, so the impact in that case depends on the application error handling rather than on qs.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-248",
+            "CWE-703"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+              "V3Score": 5.3,
+              "V40Score": 6.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-82417",
+            "https://advisory.echohq.com/cve/CVE-2026-82417",
+            "https://github.com/ljharb/qs",
+            "https://github.com/ljharb/qs/commit/e83d321ffafb38cf210683ac31714fce6ce1c6c6",
+            "https://github.com/ljharb/qs/security/advisories/GHSA-4mjr-xmp4-gh2g",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-82417",
+            "https://www.cve.org/CVERecord?id=CVE-2026-82417"
+          ],
+          "PublishedDate": "2026-08-30T00:16:34.657Z",
+          "LastModifiedDate": "2026-09-03T18:00:36.97Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-8723",
+          "VendorIDs": [
+            "GHSA-q8mj-m7cp-5q26"
+          ],
+          "PkgID": "qs@6.13.0",
+          "PkgName": "qs",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/qs@6.13.0",
+            "UID": "45b4678b356cb09e"
+          },
+          "InstalledVersion": "6.13.0",
+          "FixedVersion": "6.15.2",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-8723",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:51ad65b27287887c2faf51b136eda69dc7a5e543f4478dcc9595cb77c141fb81",
+          "Title": "qs: qs: Denial of Service due to improper handling of null/undefined array elements",
+          "Description": "### Summary\n\n\n\n`qs.stringify` throws `TypeError` when called with `arrayFormat: 'comma'` and `encodeValuesOnly: true` on an array containing `null` or `undefined`. The throw is synchronous and not handled by any of qs's null-related options (`skipNulls`, `strictNullHandling`).\n\n\n\n### Details\n\n\n\nIn the comma + `encodeValuesOnly` branch, `lib/stringify.js:145` mapped the array through the raw encoder before joining:\n\n\n\n```js\n\n\n\nobj = utils.maybeMap(obj, encoder);\n\n\n\n```\n\n\n\n`utils.encode` (`lib/utils.js:195`) reads `str.length` with no null guard, so a `null` or `undefined` element throws `TypeError`. `skipNulls` and `strictNullHandling` are both checked in the per-element loop below this line and never get a chance to run.\n\n\n\nSame class of bug as the filter-array path fixed in 0c180a4. The vulnerable shape of the comma + `encodeValuesOnly` branch was introduced in 4c4b23d (\"encode comma values more consistently\", PR #463, 2023-01-19), first released in v6.11.1.\n\n\n\n#### PoC\n\n\n\n```js\n\n\n\nconst qs = require('qs');\n\n\n\nqs.stringify({ a: [null, 'b'] },      { arrayFormat: 'comma', encodeValuesOnly: true });\n\n\n\nqs.stringify({ a: [undefined, 'b'] }, { arrayFormat: 'comma', encodeValuesOnly: true });\n\n\n\nqs.stringify({ a: [null] },           { arrayFormat: 'comma', encodeValuesOnly: true });\n\n\n\n// TypeError: Cannot read properties of null (reading 'length')\n\n\n\n//     at encode (lib/utils.js:195:13)\n\n\n\n//     at Object.maybeMap (lib/utils.js:322:37)\n\n\n\n//     at stringify (lib/stringify.js:145:25)\n\n\n\n```\n\n\n\n#### Fix\n\n\n\n`lib/stringify.js:145`, applied in 21f80b3 on `main` and released as v6.15.2:\n\n\n\n```diff\n\n\n\n- obj = utils.maybeMap(obj, encoder);\n\n\n\n+ obj = utils.maybeMap(obj, function (v) {\n\n\n\n+     return v == null ? v : encoder(v);\n\n\n\n+ });\n\n\n\n```\n\n\n\n`null` and `undefined` now pass through `maybeMap` unchanged and reach the `join(',')` step as-is. For `{ a: [null, 'b'] }` this produces `a=,b`, matching the non-`encodeValuesOnly` comma path (which already joins before encoding and produces `a=%2Cb` for the same input). Single-element `[null]` arrays still collapse via the existing `obj.join(',') || null` and remain subject to `skipNulls` / `strictNullHandling` in the main loop.\n\n\n\n### Affected versions\n\n\n\n`\u003e=6.11.1 \u003c6.15.2` — fixed in v6.15.2.\n\n\n\nThe vulnerable code shape was introduced in 4c4b23d and first shipped in v6.11.1. Earlier versions — including all of 6.7.x, 6.8.x, 6.9.x, 6.10.x, and 6.11.0 — implemented the comma + `encodeValuesOnly` path differently (joining before encoding) and are not affected. Empirically verified across released versions.\n\n\n\n### Impact\n\n\n\nApplication code that calls `qs.stringify` with both `arrayFormat: 'comma'` and `encodeValuesOnly: true` (both non-default) on input that may contain a `null` or `undefined` array element will throw synchronously instead of producing a query string. In a typical Node.js HTTP framework (Express, Fastify, Koa, hapi) the sync throw is caught by the framework's error boundary and the affected request returns a 500; the worker process does not exit and subsequent requests are unaffected. The \"kills the worker process\" framing applies only to call sites outside a request-handler error boundary (background jobs, startup paths, stream pipelines) or to deployments with framework error handling explicitly disabled.\n\n\n\nThe vulnerable input is a `null` or `undefined` entry inside an array; this is reachable from JSON request bodies or from application code constructing arrays from user input, but not from standard HTML form submissions (which produce strings or omitted fields, not literal `null`).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-476"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+              "V3Score": 5.3,
+              "V40Score": 6.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-8723",
+            "https://advisory.echohq.com/cve/CVE-2026-8723",
+            "https://github.com/advisories/GHSA-q8mj-m7cp-5q26",
+            "https://github.com/ljharb/qs",
+            "https://github.com/ljharb/qs/commit/21f80b33e5c8b3f7eba1034fff0da4a4a37a1d41",
+            "https://github.com/ljharb/qs/security/advisories/GHSA-q8mj-m7cp-5q26",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-8723",
+            "https://www.cve.org/CVERecord?id=CVE-2026-8723"
+          ],
+          "PublishedDate": "2026-05-17T00:16:21.233Z",
+          "LastModifiedDate": "2026-06-17T11:04:19.96Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-2391",
+          "VendorIDs": [
+            "GHSA-w7fw-mjwx-w883"
+          ],
+          "PkgID": "qs@6.13.0",
+          "PkgName": "qs",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/qs@6.13.0",
+            "UID": "45b4678b356cb09e"
+          },
+          "InstalledVersion": "6.13.0",
+          "FixedVersion": "6.14.2",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-2391",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:5b7dbb9b25c55461981058344feb924510f72b39e7eb71b1403841f49007f1f6",
+          "Title": "qs: qs's arrayLimit bypass in comma parsing allows denial of service",
+          "Description": "### Summary\nThe `arrayLimit` option in qs does not enforce limits for comma-separated values when `comma: true` is enabled, allowing attackers to cause denial-of-service via memory exhaustion. This is a bypass of the array limit enforcement, similar to the bracket notation bypass addressed in GHSA-6rw7-vpxm-498p (CVE-2025-15284).\n\n### Details\nWhen the `comma` option is set to `true` (not the default, but configurable in applications), qs allows parsing comma-separated strings as arrays (e.g., `?param=a,b,c` becomes `['a', 'b', 'c']`). However, the limit check for `arrayLimit` (default: 20) and the optional throwOnLimitExceeded occur after the comma-handling logic in `parseArrayValue`, enabling a bypass. This permits creation of arbitrarily large arrays from a single parameter, leading to excessive memory allocation.\n\n**Vulnerable code** (lib/parse.js: lines ~40-50):\n```js\nif (val \u0026\u0026 typeof val === 'string' \u0026\u0026 options.comma \u0026\u0026 val.indexOf(',') \u003e -1) {\n    return val.split(',');\n}\n\nif (options.throwOnLimitExceeded \u0026\u0026 currentArrayLength \u003e= options.arrayLimit) {\n    throw new RangeError('Array limit exceeded. Only ' + options.arrayLimit + ' element' + (options.arrayLimit === 1 ? '' : 's') + ' allowed in an array.');\n}\n\nreturn val;\n```\nThe `split(',')` returns the array immediately, skipping the subsequent limit check. Downstream merging via `utils.combine` does not prevent allocation, even if it marks overflows for sparse arrays.This discrepancy allows attackers to send a single parameter with millions of commas (e.g., `?param=,,,,,,,,...`), allocating massive arrays in memory without triggering limits. It bypasses the intent of `arrayLimit`, which is enforced correctly for indexed (`a[0]=`) and bracket (`a[]=`) notations (the latter fixed in v6.14.1 per GHSA-6rw7-vpxm-498p).\n\n### PoC\n**Test 1 - Basic bypass:**\n```\nnpm install qs\n```\n\n```js\nconst qs = require('qs');\n\nconst payload = 'a=' + ','.repeat(25);  // 26 elements after split (bypasses arrayLimit: 5)\nconst options = { comma: true, arrayLimit: 5, throwOnLimitExceeded: true };\n\ntry {\n  const result = qs.parse(payload, options);\n  console.log(result.a.length);  // Outputs: 26 (bypass successful)\n} catch (e) {\n  console.log('Limit enforced:', e.message);  // Not thrown\n}\n```\n**Configuration:**\n- `comma: true`\n- `arrayLimit: 5`\n- `throwOnLimitExceeded: true`\n\nExpected: Throws \"Array limit exceeded\" error.\nActual: Parses successfully, creating an array of length 26.\n\n\n### Impact\nDenial of Service (DoS) via memory exhaustion.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1,
+            "nvd": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 3.7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-2391",
+            "https://advisory.echohq.com/cve/CVE-2026-2391",
+            "https://github.com/advisories/GHSA-w7fw-mjwx-w883",
+            "https://github.com/ljharb/qs",
+            "https://github.com/ljharb/qs/commit/f6a7abff1f13d644db9b05fe4f2c98ada6bf8482",
+            "https://github.com/ljharb/qs/security/advisories/GHSA-w7fw-mjwx-w883",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-2391",
+            "https://www.cve.org/CVERecord?id=CVE-2026-2391"
+          ],
+          "PublishedDate": "2026-02-12T05:17:11.187Z",
+          "LastModifiedDate": "2026-06-17T10:30:53.183Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-41907",
+          "VendorIDs": [
+            "GHSA-w5hq-g745-h8pq"
+          ],
+          "PkgID": "uuid@9.0.0",
+          "PkgName": "uuid",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/uuid@9.0.0",
+            "UID": "eb268c13c53a2f79"
+          },
+          "InstalledVersion": "9.0.0",
+          "FixedVersion": "11.1.1, 12.0.1, 13.0.1",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-41907",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:e48681a217cb2ef5bd696536d0e158e5fe9878edb0929dc6218cf5d2928ebd7c",
+          "Title": "uuid: uuid: Out-of-bounds write vulnerability impacts data integrity and confidentiality",
+          "Description": "uuid is for the creation of RFC9562 (formerly RFC4122) UUIDs. Prior to 14.0.0, v3, v5, and v6 accept external output buffers but do not reject out-of-range writes (small buf or large offset). This allows silent partial writes into caller-provided buffers. This vulnerability is fixed in 14.0.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-787",
+            "CWE-823"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+              "V3Score": 7.5,
+              "V40Score": 6.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L",
+              "V3Score": 4.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-41907",
+            "https://advisory.echohq.com/cve/CVE-2026-41907",
+            "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+            "https://github.com/uuidjs/uuid",
+            "https://github.com/uuidjs/uuid/commit/32389c887c9e75f90442ee4cc95bbab0c4e8346e",
+            "https://github.com/uuidjs/uuid/commit/3d2c5b0342f0fcb52a5ac681c3d47c13e7444b34",
+            "https://github.com/uuidjs/uuid/commit/3d61d6ac1f782cf6b1dd8661c60f11722cd49a0d",
+            "https://github.com/uuidjs/uuid/commit/9d27ddf7046ce496ef39569ff84d948eeff9cb2a",
+            "https://github.com/uuidjs/uuid/releases/tag/v11.1.1",
+            "https://github.com/uuidjs/uuid/releases/tag/v12.0.1",
+            "https://github.com/uuidjs/uuid/releases/tag/v13.0.1",
+            "https://github.com/uuidjs/uuid/releases/tag/v14.0.0",
+            "https://github.com/uuidjs/uuid/security/advisories/GHSA-w5hq-g745-h8pq",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-41907",
+            "https://www.cve.org/CVERecord?id=CVE-2026-41907"
+          ],
+          "PublishedDate": "2026-04-24T19:17:14.49Z",
+          "LastModifiedDate": "2026-06-17T10:47:10.473Z"
+        }
+      ]
+    },
+    {
+      "Target": "requirements.txt",
+      "Class": "lang-pkgs",
+      "Type": "pip",
+      "Packages": [
+        {
+          "Name": "bcrypt",
+          "Identifier": {
+            "PURL": "pkg:pypi/bcrypt@4.0.1",
+            "UID": "1cf0639965725d4a"
+          },
+          "Version": "4.0.1",
+          "Locations": [
+            {
+              "StartLine": 8,
+              "EndLine": 8
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "cryptography",
+          "Identifier": {
+            "PURL": "pkg:pypi/cryptography@46.0.7",
+            "UID": "9599ab01da3c0a39"
+          },
+          "Version": "46.0.7",
+          "Locations": [
+            {
+              "StartLine": 7,
+              "EndLine": 7
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "fastapi",
+          "Identifier": {
+            "PURL": "pkg:pypi/fastapi@0.115.6",
+            "UID": "44be4c598c331156"
+          },
+          "Version": "0.115.6",
+          "Locations": [
+            {
+              "StartLine": 1,
+              "EndLine": 1
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "httpx",
+          "Identifier": {
+            "PURL": "pkg:pypi/httpx@0.25.2",
+            "UID": "144e275b14cedaf9"
+          },
+          "Version": "0.25.2",
+          "Locations": [
+            {
+              "StartLine": 9,
+              "EndLine": 9
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "passlib",
+          "Identifier": {
+            "PURL": "pkg:pypi/passlib@1.7.4",
+            "UID": "7b4b3c0f19e0ea66"
+          },
+          "Version": "1.7.4",
+          "Locations": [
+            {
+              "StartLine": 5,
+              "EndLine": 5
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "python-jose",
+          "Identifier": {
+            "PURL": "pkg:pypi/python-jose@3.4.0",
+            "UID": "ec16795acc42181a"
+          },
+          "Version": "3.4.0",
+          "Locations": [
+            {
+              "StartLine": 4,
+              "EndLine": 4
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "python-multipart",
+          "Identifier": {
+            "PURL": "pkg:pypi/python-multipart@0.0.30",
+            "UID": "30a52a555742dd74"
+          },
+          "Version": "0.0.30",
+          "Locations": [
+            {
+              "StartLine": 6,
+              "EndLine": 6
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "sqlalchemy",
+          "Identifier": {
+            "PURL": "pkg:pypi/sqlalchemy@2.0.36",
+            "UID": "7001d50c76eecb89"
+          },
+          "Version": "2.0.36",
+          "Locations": [
+            {
+              "StartLine": 3,
+              "EndLine": 3
+            }
+          ],
+          "AnalyzedBy": "pip"
+        },
+        {
+          "Name": "uvicorn",
+          "Identifier": {
+            "PURL": "pkg:pypi/uvicorn@0.24.0",
+            "UID": "b72df9dd5e6558ad"
+          },
+          "Version": "0.24.0",
+          "Locations": [
+            {
+              "StartLine": 2,
+              "EndLine": 2
+            }
+          ],
+          "AnalyzedBy": "pip"
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-69247",
+          "VendorIDs": [
+            "GHSA-g6cj-pr64-35w5"
+          ],
+          "PkgName": "cryptography",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/cryptography@46.0.7",
+            "UID": "9599ab01da3c0a39"
+          },
+          "InstalledVersion": "46.0.7",
+          "FixedVersion": "50.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-69247",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:faad1b7c1b9964b382ec3a96f9db4d1a53ddebe6cc1c58ef9d9d009990a273a5",
+          "Title": "python-cryptography: python-cryptography: PKCS#7 EnvelopedData decryption exposes a Bleichenbacher oracle through distinguishable errors and timing",
+          "Description": "cryptography is a package designed to expose cryptographic primitives and recipes to Python developers. From 44.0.0 until 50.0.0, pkcs7_decrypt_der, pkcs7_decrypt_pem, and pkcs7_decrypt_smime reported the outcome of decrypting a RecipientInfo's encryptedKey in several distinguishable ways, one of which disclosed the exact length recovered from the RSA operation. The same distinction was also observable by timing. An application that decrypts attacker-supplied EnvelopedData and reflects the outcome gives the attacker a Bleichenbacher oracle against the content-encryption key. Decryption ran as RSA PKCS#1 v1.5 decrypt of encryptedKey, build an AES cipher from the result, then AES-CBC decrypt and PKCS#7 unpad. Invalid RSA padding, a valid padding with a bad key length, a correct length with a wrong key, and the real key each failed or succeeded differently. Case 1 is reachable only where the linked library lacks implicit rejection: OpenSSL 3.0 and 3.1, LibreSSL, and BoringSSL. Exploitation requires a service that auto-decrypts untrusted EnvelopedData matching the victim certificate and answers adaptively at high volume, such as an S/MIME gateway or mail filter. This issue is fixed in 50.0.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-208",
+            "CWE-209"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+              "V40Score": 8.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-69247",
+            "https://advisory.echohq.com/cve/CVE-2026-69247",
+            "https://github.com/pyca/cryptography",
+            "https://github.com/pyca/cryptography/commit/53fccd93413a8d7f07d6d8999681f27b75cffa3f",
+            "https://github.com/pyca/cryptography/pull/15369",
+            "https://github.com/pyca/cryptography/security/advisories/GHSA-g6cj-pr64-35w5",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69247",
+            "https://ubuntu.com/security/notices/USN-8776-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-69247"
+          ],
+          "PublishedDate": "2026-08-03T22:16:52.38Z",
+          "LastModifiedDate": "2026-09-10T20:36:14.34Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-69249",
+          "VendorIDs": [
+            "GHSA-jwv3-5hgf-82ww"
+          ],
+          "PkgName": "cryptography",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/cryptography@46.0.7",
+            "UID": "9599ab01da3c0a39"
+          },
+          "InstalledVersion": "46.0.7",
+          "FixedVersion": "49.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-69249",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:2c66ded0a017bc95c2e2e48d6abc752215ef757a759d1431c60c9ad85c743110",
+          "Title": "python-cryptography: python-cryptography: Duplicate self-signed intermediates can cause exponential path-building",
+          "Description": "python-cryptography is a package designed to expose cryptographic primitives and recipes to Python developers. In versions 42.0.0 through 48.0.0, when resolving invalid certificate chains that include duplicate copies of self-signed certificates, the processing recursively invokes the same candidate, leading to an exponential blowup. Although the limitation that the chain depth cannot exceed a specified maximum depth prevents unbounded recursion and guarantees termination, an attacker-controlled certificate chain can lead the processing to easily take more than 5s to reject in testing. This amplification could form the basis for a resource exhaustion denial of service attack. The core issue arises in the recursive nature of build_chain_inner, which does not de-duplicate against previously analyzed candidates. As the correctness of validation is not affected, the integrity of a system cannot be compromised through this vector, only its availability. This issue is fixed in 49.0.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "azure": 3,
+            "ghsa": 3,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+              "V40Score": 8.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:64774",
+            "https://access.redhat.com/errata/RHSA-2026:71658",
+            "https://access.redhat.com/security/cve/CVE-2026-69249",
+            "https://advisory.echohq.com/cve/CVE-2026-69249",
+            "https://bugzilla.redhat.com/2510815",
+            "https://bugzilla.redhat.com/2510830",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2510815",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-69249",
+            "https://errata.almalinux.org/9/ALSA-2026-64774.html",
+            "https://errata.rockylinux.org/RLSA-2026:71658",
+            "https://github.com/pyca/cryptography",
+            "https://github.com/pyca/cryptography/commit/3763aa79b",
+            "https://github.com/pyca/cryptography/commit/4a12cf49675a184e47f912b00b04f3a629283582",
+            "https://github.com/pyca/cryptography/pull/14960",
+            "https://github.com/pyca/cryptography/security/advisories/GHSA-jwv3-5hgf-82ww",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/cryptography/PYSEC-2026-3553.yaml",
+            "https://linux.oracle.com/cve/CVE-2026-69249.html",
+            "https://linux.oracle.com/errata/ELSA-2026-71658.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69249",
+            "https://ubuntu.com/security/notices/USN-8776-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-69249"
+          ],
+          "PublishedDate": "2026-08-03T22:16:52.72Z",
+          "LastModifiedDate": "2026-09-10T20:36:14.34Z"
+        },
+        {
+          "VulnerabilityID": "GHSA-537c-gmf6-5ccf",
+          "PkgName": "cryptography",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/cryptography@46.0.7",
+            "UID": "9599ab01da3c0a39"
+          },
+          "InstalledVersion": "46.0.7",
+          "FixedVersion": "48.0.1",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://github.com/advisories/GHSA-537c-gmf6-5ccf",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:461225b55b6f986f2ce3b21e87121f13b941ff17a2ed5d77b1c1bea71eef4292",
+          "Title": "Vulnerable OpenSSL included in cryptography wheels",
+          "Description": "pyca/cryptography's wheels include a statically linked copy of OpenSSL. The versions of OpenSSL included in wheels prior to cryptograph 48.01 are vulnerable to a security issue. More details about the vulnerability itself can be found in https://openssl-library.org/news/secadv/20260609.txt.\n\nIf you are building cryptography source (\"sdist\") then you are responsible for upgrading your copy of OpenSSL. Only users installing from wheels built by the cryptography project (i.e., those distributed on PyPI) need to update their cryptography versions.",
+          "Severity": "HIGH",
+          "VendorSeverity": {
+            "ghsa": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://advisory.echohq.com/cve/GHSA-537c-gmf6-5ccf",
+            "https://github.com/advisories/GHSA-537c-gmf6-5ccf",
+            "https://github.com/pyca/cryptography",
+            "https://github.com/pyca/cryptography/security/advisories/GHSA-537c-gmf6-5ccf",
+            "https://openssl-library.org/news/secadv/20260609.txt"
+          ],
+          "PublishedDate": "2026-06-15T20:12:27Z",
+          "LastModifiedDate": "2026-06-15T20:12:27Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-69248",
+          "VendorIDs": [
+            "GHSA-m2h6-j472-rp4c"
+          ],
+          "PkgName": "cryptography",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/cryptography@46.0.7",
+            "UID": "9599ab01da3c0a39"
+          },
+          "InstalledVersion": "46.0.7",
+          "FixedVersion": "49.0.0",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-69248",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:53b67ce2a70f0f32e9d5cf7cc6c630b8f9c11e30183f5b30008227232d40aca9",
+          "Title": "python-cryptography: python-cryptography: python-cryptography verifier accepts wildcard DNS names allowing escape from permittedSubtrees",
+          "Description": "cryptography is a package designed to expose cryptographic primitives and recipes to Python developers. In versions 45.0.0 through 48.0.0, if an intermediate constrained CA permits the DNS name foo.example.com, and the leaf certificate has a wildcard in its DNS SAN of *.example.com, python-cryptography's verifier accepts which allows escaping outside of the permitted names. The core issue is in DNSConstraint::matches, where a wildcard pattern was treated as matching a more-specific permitted constraint even though *.example.com can expand to sibling names such as bar.example.com outside foo.example.com. This allows acceptance of an invalid certificate chain. This issue is fixed in 49.0.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-295"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "ghsa": 2,
+            "oracle-oval": 3,
+            "redhat": 2,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:H/VA:N/SC:N/SI:N/SA:N/E:P",
+              "V40Score": 6.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:64774",
+            "https://access.redhat.com/errata/RHSA-2026:64795",
+            "https://access.redhat.com/security/cve/CVE-2026-69248",
+            "https://advisory.echohq.com/cve/CVE-2026-69248",
+            "https://bugzilla.redhat.com/2510815",
+            "https://bugzilla.redhat.com/2510830",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2510815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2510830",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-69248",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-69249",
+            "https://errata.almalinux.org/9/ALSA-2026-64774.html",
+            "https://errata.rockylinux.org/RLSA-2026:64795",
+            "https://github.com/pyca/cryptography",
+            "https://github.com/pyca/cryptography/commit/286c89128",
+            "https://github.com/pyca/cryptography/commit/4d035a4225965edeffd312079a510ef25fcfdcb2",
+            "https://github.com/pyca/cryptography/pull/14888",
+            "https://github.com/pyca/cryptography/security/advisories/GHSA-m2h6-j472-rp4c",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/cryptography/PYSEC-2026-3554.yaml",
+            "https://linux.oracle.com/cve/CVE-2026-69248.html",
+            "https://linux.oracle.com/errata/ELSA-2026-64795-0.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69248",
+            "https://ubuntu.com/security/notices/USN-8776-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-69248"
+          ],
+          "PublishedDate": "2026-08-03T22:16:52.55Z",
+          "LastModifiedDate": "2026-09-10T20:36:14.34Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-85394",
+          "VendorIDs": [
+            "GHSA-3qf3-8w2g-rqmx"
+          ],
+          "PkgName": "python-jose",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/python-jose@3.4.0",
+            "UID": "ec16795acc42181a"
+          },
+          "InstalledVersion": "3.4.0",
+          "Status": "affected",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-85394",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:00d77be5bbf52e410de8cec8131469533f8bc1a7a2ea6085b24924066dcc15a6",
+          "Title": "jose: python-jose: python-jose through 3.5.0 Algorithm Confusion via DER-encoded Public Key as HMAC Secret",
+          "Description": "python-jose through 3.5.0 fails to properly validate asymmetric keys in HMAC initialization, accepting DER-encoded public keys that lack PEM armor or SSH prefixes. Attackers holding the service's public key can forge HS256 tokens that pass verification when algorithms are not explicitly restricted. This is an incomplete fix for CVE-2024-33663.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "ghsa": 4,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+              "V3Score": 9.1,
+              "V40Score": 9.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-85394",
+            "https://github.com/advisories/GHSA-6c5p-j8vq-pqhj",
+            "https://github.com/mpdavis/python-jose",
+            "https://github.com/mpdavis/python-jose/blob/018b310ddb8b50dcfd09a0c152117835a21dd656/jose/backends/native.py",
+            "https://github.com/mpdavis/python-jose/blob/018b310ddb8b50dcfd09a0c152117835a21dd656/jose/utils.py",
+            "https://github.com/mpdavis/python-jose/issues/414",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-85394",
+            "https://www.cve.org/CVERecord?id=CVE-2026-85394",
+            "https://www.vulncheck.com/advisories/python-jose-through-3.5.0-algorithm-confusion-via-der-encoded-public-key-as-hmac-secret"
+          ],
+          "PublishedDate": "2026-09-03T19:17:31.257Z",
+          "LastModifiedDate": "2026-09-24T20:43:32.537Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-53540",
+          "VendorIDs": [
+            "GHSA-v9pg-7xvm-68hf"
+          ],
+          "PkgName": "python-multipart",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/python-multipart@0.0.30",
+            "UID": "30a52a555742dd74"
+          },
+          "InstalledVersion": "0.0.30",
+          "FixedVersion": "0.0.31",
+          "Status": "fixed",
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-53540",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:a5ed8e3847e93ad8921e7d3fc847cdd3a49ac34e6bf2bbee83096b08aaf9504f",
+          "Title": "python-multipart: Python-Multipart: Negative Content-Length in parse_form buffers the entire body in memory",
+          "Description": "Python-Multipart is a streaming multipart parser for Python. Prior to 0.0.31, parse_form() did not validate the Content-Length header before using it to bound its chunked read of the request body. A negative Content-Length turned the bounded read into a read-until-EOF, so the entire body was loaded into memory in a single read instead of in fixed-size chunks. This vulnerability is fixed in 0.0.31.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-1284"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1,
+            "redhat": 1
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 3.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 3.7
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-53540",
+            "https://advisory.echohq.com/cve/CVE-2026-53540",
+            "https://github.com/Kludex/python-multipart",
+            "https://github.com/Kludex/python-multipart/security/advisories/GHSA-v9pg-7xvm-68hf",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-53540",
+            "https://www.cve.org/CVERecord?id=CVE-2026-53540"
+          ],
+          "PublishedDate": "2026-06-22T18:16:44.497Z",
+          "LastModifiedDate": "2026-06-26T19:50:18.34Z"
+        }
+      ]
+    }
+  ]
+}
