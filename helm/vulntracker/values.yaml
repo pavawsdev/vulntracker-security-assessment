@@ -1,0 +1,84 @@
+# SQLite is single-writer, so the API runs as one replica until it moves to a managed database
+replicaCount: 1
+
+image:
+  repository: ghcr.io/pavawsdev/vulntracker-api
+  tag: "1.0.0"
+  digest: ""
+  pullPolicy: IfNotPresent
+
+# Required: base URL for share links (not taken from the Host header)
+publicBaseUrl: ""
+
+notifyServiceUrl: "http://vulntracker-notify:3001"
+
+serviceAccount:
+  create: true
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 8000
+
+ingress:
+  enabled: true
+  className: nginx
+  host: vulntracker.example.com
+  tlsSecretName: vulntracker-tls
+  annotations:
+    # Rate limit: compensating control against password brute force
+    nginx.ingress.kubernetes.io/limit-rps: "5"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+
+# Secrets are pulled from the secrets manager and mounted as files; none are stored in this chart
+externalSecrets:
+  enabled: true
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: platform-secrets
+  data:
+    - name: jwt-secret-key
+      remoteKey: vulntracker/api
+      property: jwt_secret_key
+
+secretsMountPath: /var/run/secrets/vulntracker
+
+persistence:
+  enabled: false
+  storageClass: ""
+  size: 1Gi
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+networkPolicy:
+  enabled: true
+  ingressController:
+    namespace: ingress-nginx
+    podLabels:
+      app.kubernetes.io/name: ingress-nginx
+  notify:
+    podLabels:
+      app.kubernetes.io/name: vulntracker-notify
+    port: 3001
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  privileged: false
+  capabilities:
+    drop: ["ALL"]

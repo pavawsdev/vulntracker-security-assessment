@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vulntracker.fullname" . }}
+  labels:
+    {{- include "vulntracker.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  # Recreate avoids two pods writing the same SQLite file during a rollout
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "vulntracker.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "vulntracker.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "vulntracker.serviceAccountName" . }}
+      # The app never calls the Kubernetes API, so don't hand it a token
+      automountServiceAccountToken: false
+      # Don't inject env vars describing every other Service in the namespace
+      enableServiceLinks: false
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: api
+          image: {{ include "vulntracker.image" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          env:
+            # Non-secret config only; secrets are files under secretsMountPath
+            - name: PUBLIC_BASE_URL
+              value: {{ required "publicBaseUrl is required" .Values.publicBaseUrl | quote }}
+            - name: NOTIFY_SERVICE_URL
+              value: {{ .Values.notifyServiceUrl | quote }}
+            - name: DATABASE_URL
+              value: "sqlite:////data/vulntracker.db"
+            {{- range .Values.externalSecrets.data }}
+            # Path to the secret file, not the secret itself
+            - name: {{ .name | upper | replace "-" "_" }}_FILE
+              value: "{{ $.Values.secretsMountPath }}/{{ .name }}"
+            {{- end }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            # Writable scratch space, since the root filesystem is read-only
+            - name: tmp
+              mountPath: /tmp
+            {{- if .Values.externalSecrets.enabled }}
+            - name: secrets
+              mountPath: {{ .Values.secretsMountPath }}
+              readOnly: true
+            {{- end }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "vulntracker.fullname" . }}-data
+          {{- else }}
+          emptyDir:
+            sizeLimit: {{ .Values.persistence.size }}
+          {{- end }}
+        - name: tmp
+          emptyDir:
+            sizeLimit: 64Mi
+        {{- if .Values.externalSecrets.enabled }}
+        - name: secrets
+          secret:
+            secretName: {{ include "vulntracker.fullname" . }}-secrets
+            # Read-only to owner and the pod fsGroup (the app user)
+            defaultMode: 0440
+        {{- end }}
