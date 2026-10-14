@@ -1,0 +1,23 @@
+# Keep the build context to what the image needs; stops secrets, history and local data leaking into layers
+.git
+.github
+.claude
+.venv
+venv
+env
+**/__pycache__
+**/*.py[cod]
+*.db
+*.sqlite3
+.env
+.env.*
+*.log
+.pytest_cache
+tests
+notify
+reports
+docs
+helm
+terraform
+README.md
+requirements-dev.txt

@@ -40,7 +40,7 @@ From here, work on your own repo and share its URL when you submit.
 ```bash
 python -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt   # runtime deps + pytest; the container uses requirements.txt only
 ```
 
 The API must be started from inside the `app/` directory — the modules use bare imports and won't resolve from the repo root:
@@ -73,6 +73,49 @@ Run the Node.js test suite (stop the notify service first if it is running — t
 ```bash
 cd notify
 npm test
+```
+
+**Running the API in Docker**
+
+Build from the repo root:
+
+```bash
+docker build -t vulntracker-api:local .
+```
+
+Run it. The root filesystem is read-only; the SQLite database lives on a named volume mounted at `/data`. The port is bound to localhost only, so other machines on the network can't reach it:
+
+```bash
+docker run --rm -p 127.0.0.1:8000:8000 \
+  --read-only --tmpfs /tmp \
+  -v vulntracker-data:/data \
+  -e PUBLIC_BASE_URL=http://localhost:8000 \
+  vulntracker-api:local
+```
+
+On Windows Git Bash, prefix with `MSYS_NO_PATHCONV=1` so `/tmp` and `/data` aren't rewritten to Windows paths.
+
+Check it is up (the container also reports health via its `HEALTHCHECK`):
+
+```bash
+curl http://localhost:8000/health
+docker ps --format '{{.Names}}: {{.Status}}'   # shows (healthy) after ~10s
+```
+
+The image runs as non-root UID 10001, contains no test tooling, and has no secrets baked in.
+
+**Share link URLs**: `share_url` is built from the `PUBLIC_BASE_URL` environment variable (default `http://localhost:8000`), not from the request's `Host` header, which is client-controlled and unreliable behind a proxy.
+
+**Deploying to Kubernetes (Helm)**
+
+The chart in `helm/vulntracker` expects [External Secrets Operator](https://external-secrets.io) and a `ClusterSecretStore` backed by your secrets manager. Secrets are mounted into the pod as read-only files, never passed as environment variables.
+
+```bash
+helm lint helm/vulntracker --set publicBaseUrl=https://vulntracker.example.com
+helm install vulntracker helm/vulntracker \
+  --namespace vulntracker --create-namespace \
+  --set publicBaseUrl=https://vulntracker.example.com \
+  --set image.digest=sha256:<image-digest>
 ```
 
 ---

@@ -1,6 +1,7 @@
 import os
 
-DATABASE_URL = "sqlite:///./vulntracker.db"
+# Overridable so the container can keep the DB on a writable volume (root filesystem is read-only)
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./vulntracker.db")
 
 SECRET_KEY = "v3ry-s3cr3t-jwt-k3y-do-not-share"
 ALGORITHM = "HS256"
@@ -13,7 +14,8 @@ DB_PASSWORD = "Tr@cker2024!"
 # Internal service API key
 ADMIN_API_KEY = "sk-vt-prod-8f3a2b1c9d4e5f6a7b8c9d0e1f2a3b4c"
 
-NOTIFY_SERVICE_URL = "http://localhost:3001"
+# Overridable so Kubernetes can point it at the in-cluster notify service
+NOTIFY_SERVICE_URL = os.getenv("NOTIFY_SERVICE_URL", "http://localhost:3001")
 
 # Share links use a configured base URL, not the client-controlled Host header (prevents host-header injection)
 PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8000").rstrip("/")
