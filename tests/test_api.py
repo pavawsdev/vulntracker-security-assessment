@@ -298,3 +298,15 @@ def test_search_wildcards_are_escaped():
                                 "affected_component": "svc"}, headers=auth_headers(token))
     resp = client.get("/scans/search", params={"q": "%%"}, headers=auth_headers(token))
     assert resp.json()["results"] == []
+
+
+# F2: config refuses to start when no signing key is provided
+def test_app_requires_jwt_secret(monkeypatch):
+    import importlib, config
+    monkeypatch.delenv("JWT_SECRET_KEY", raising=False)
+    monkeypatch.delenv("JWT_SECRET_KEY_FILE", raising=False)
+    with pytest.raises(RuntimeError):
+        importlib.reload(config)
+    # restore for the rest of the suite
+    monkeypatch.setenv("JWT_SECRET_KEY", "test-only-not-a-real-secret")
+    importlib.reload(config)

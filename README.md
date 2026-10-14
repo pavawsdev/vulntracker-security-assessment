@@ -43,11 +43,13 @@ source .venv/bin/activate       # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt   # runtime deps + pytest; the container uses requirements.txt only
 ```
 
+The API reads its JWT signing key from the environment and refuses to start without one. Copy `.env.example` to `.env` and set `JWT_SECRET_KEY` (generate one with `python -c "import secrets; print(secrets.token_urlsafe(32))"`), or export it in your shell.
+
 The API must be started from inside the `app/` directory — the modules use bare imports and won't resolve from the repo root:
 
 ```bash
 cd app
-uvicorn main:app --reload
+JWT_SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(32))')" uvicorn main:app --reload
 ```
 
 Available at `http://localhost:8000`. Interactive docs at `http://localhost:8000/docs`.
