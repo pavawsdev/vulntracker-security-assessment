@@ -260,3 +260,110 @@ def test_share_token_not_stored_in_plaintext():
     db.close()
     assert link.token_hash != share_token
     assert len(link.token_hash) == 64
+
+
+# ---------------------------------------------------------------------------
+# Remediation regression tests
+# ---------------------------------------------------------------------------
+
+# F1: injection payloads return no rows and can't reach other users' data or the users table
+def test_search_sql_injection_is_neutralised():
+    token = register_and_login(username="carol", email="carol@example.com")
+    client.post("/scans", json={"title": "Carol finding", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(token))
+    for payload in ["zz' OR '1'='1",
+                    "zz' UNION SELECT id,username,hashed_password,email,'x','x','x',0,created_at FROM users--"]:
+        resp = client.get("/scans/search", params={"q": payload}, headers=auth_headers(token))
+        assert resp.status_code == 200
+        assert resp.json()["results"] == []
+
+
+# F1: search only returns the caller's own scans
+def test_search_is_scoped_to_owner():
+    owner = register_and_login(username="dave", email="dave@example.com")
+    client.post("/scans", json={"title": "shared-term dave", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(owner))
+    other = register_and_login(username="erin", email="erin@example.com")
+    client.post("/scans", json={"title": "shared-term erin", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(other))
+    resp = client.get("/scans/search", params={"q": "shared-term"}, headers=auth_headers(other))
+    titles = [r["title"] for r in resp.json()["results"]]
+    assert titles == ["shared-term erin"]
+
+
+# F1: LIKE wildcards in user input are treated literally, not as match-all
+def test_search_wildcards_are_escaped():
+    token = register_and_login(username="frank", email="frank@example.com")
+    client.post("/scans", json={"title": "real finding", "severity": "low",
+                                "affected_component": "svc"}, headers=auth_headers(token))
+    resp = client.get("/scans/search", params={"q": "%%"}, headers=auth_headers(token))
+    assert resp.json()["results"] == []
+
+
+# F2: config refuses to start when no signing key is provided
+def test_app_requires_jwt_secret(monkeypatch):
+    import importlib, config
+    monkeypatch.delenv("JWT_SECRET_KEY", raising=False)
+    monkeypatch.delenv("JWT_SECRET_KEY_FILE", raising=False)
+    with pytest.raises(RuntimeError):
+        importlib.reload(config)
+    # restore for the rest of the suite
+    monkeypatch.setenv("JWT_SECRET_KEY", "test-only-not-a-real-secret")
+    importlib.reload(config)
+
+
+# F3: a user cannot read another user's scan by id
+def test_get_scan_enforces_ownership():
+    owner = register_and_login(username="grace", email="grace@example.com")
+    scan_id = client.post("/scans", json={"title": "grace secret", "severity": "high",
+                                           "affected_component": "svc"},
+                          headers=auth_headers(owner)).json()["id"]
+    other = register_and_login(username="heidi", email="heidi@example.com")
+    resp = client.get(f"/scans/{scan_id}", headers=auth_headers(other))
+    assert resp.status_code == 404
+    assert client.get(f"/scans/{scan_id}", headers=auth_headers(owner)).status_code == 200
+
+
+# F8: an unsigned (alg=none) token is rejected, not accepted
+def test_alg_none_token_rejected():
+    import base64, json as _json
+    b = lambda d: base64.urlsafe_b64encode(_json.dumps(d).encode()).rstrip(b"=").decode()
+    forged = b({"alg": "none", "typ": "JWT"}) + "." + b({"sub": "grace"}) + "."
+    resp = client.get("/scans", headers=auth_headers(forged))
+    assert resp.status_code == 401
+
+
+# F4: the password is never written to logs
+def test_login_does_not_log_password(caplog):
+    register_and_login(username="ivan", email="ivan@example.com", password="sup3r-secret-pw")
+    with caplog.at_level("INFO"):
+        client.post("/auth/login", json={"username": "ivan", "password": "sup3r-secret-pw"})
+        client.post("/auth/login", json={"username": "ivan", "password": "wrong-pw-guess"})
+    assert "sup3r-secret-pw" not in caplog.text
+    assert "wrong-pw-guess" not in caplog.text
+
+
+# F11: the share password can be supplied via header, not only the query string
+def test_share_password_via_header():
+    token = register_and_login(username="judy", email="judy@example.com")
+    scan_id = create_scan(token)
+    resp = client.post(f"/scans/{scan_id}/share", json={"password": "auditor-pass-1"},
+                       headers=auth_headers(token))
+    share_token = share_token_from(resp)
+    ok = client.get(f"/share/{share_token}", headers={"X-Share-Password": "auditor-pass-1"})
+    assert ok.status_code == 200
+    assert ok.json()["title"] == "Shared finding"
+
+
+# F10: a password-protected link locks after repeated wrong guesses
+def test_share_password_locks_after_attempts():
+    token = register_and_login(username="mike", email="mike@example.com")
+    scan_id = create_scan(token)
+    share_token = share_token_from(
+        client.post(f"/scans/{scan_id}/share", json={"password": "auditor-pass-1"},
+                    headers=auth_headers(token)))
+    for _ in range(5):
+        assert client.get(f"/share/{share_token}", params={"password": "wrong"}).status_code == 401
+    # further attempts are locked out, even with the correct password
+    assert client.get(f"/share/{share_token}", params={"password": "wrong"}).status_code == 429
+    assert client.get(f"/share/{share_token}", params={"password": "auditor-pass-1"}).status_code == 429

@@ -14,6 +14,10 @@ app.kubernetes.io/name: {{ .Chart.Name }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
+{{- define "vulntracker.namespace" -}}
+{{- default .Release.Namespace .Values.namespace -}}
+{{- end -}}
+
 {{- define "vulntracker.serviceAccountName" -}}
 {{- default (include "vulntracker.fullname" .) .Values.serviceAccount.name -}}
 {{- end -}}

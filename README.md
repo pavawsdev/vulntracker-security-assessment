@@ -43,11 +43,13 @@ source .venv/bin/activate       # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt   # runtime deps + pytest; the container uses requirements.txt only
 ```
 
+The API reads its JWT signing key from the environment and refuses to start without one. Copy `.env.example` to `.env` and set `JWT_SECRET_KEY` (generate one with `python -c "import secrets; print(secrets.token_urlsafe(32))"`), or export it in your shell.
+
 The API must be started from inside the `app/` directory — the modules use bare imports and won't resolve from the repo root:
 
 ```bash
 cd app
-uvicorn main:app --reload
+JWT_SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(32))')" uvicorn main:app --reload
 ```
 
 Available at `http://localhost:8000`. Interactive docs at `http://localhost:8000/docs`.
@@ -105,6 +107,8 @@ docker ps --format '{{.Names}}: {{.Status}}'   # shows (healthy) after ~10s
 The image runs as non-root UID 10001, contains no test tooling, and has no secrets baked in.
 
 **Share link URLs**: `share_url` is built from the `PUBLIC_BASE_URL` environment variable (default `http://localhost:8000`), not from the request's `Host` header, which is client-controlled and unreliable behind a proxy.
+
+**Share link password**: for a password-protected link, supply the password in the `X-Share-Password` header, which keeps it out of server logs and browser history. A `?password=` query parameter is also accepted as a fallback but is discouraged for that reason. A link locks after 5 wrong attempts.
 
 **Deploying to Kubernetes (Helm)**
 

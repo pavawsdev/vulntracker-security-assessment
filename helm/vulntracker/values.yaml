@@ -1,11 +1,15 @@
+# Target namespace; defaults to the release namespace if left empty
+namespace: vulntracker
+
 # SQLite is single-writer, so the API runs as one replica until it moves to a managed database
 replicaCount: 1
 
 image:
   repository: ghcr.io/pavawsdev/vulntracker-api
   tag: "1.0.0"
-  digest: ""
-  pullPolicy: IfNotPresent
+  # Deploy by immutable digest so the running image can't be swapped under a moved tag
+  digest: "sha256:d4f72d662168e801a3edb58ab27ed681d55f37dec31a1b7f903792f83c28b82d"
+  pullPolicy: Always
 
 # Required: base URL for share links (not taken from the Host header)
 publicBaseUrl: ""
