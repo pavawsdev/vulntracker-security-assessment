@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import datetime, timedelta
 
 import pytest
 from fastapi.testclient import TestClient
@@ -8,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "app"))
 
+import models  # noqa: E402
 from database import Base, get_db  # noqa: E402
 from main import app  # noqa: E402
 
@@ -148,3 +150,113 @@ def test_delete_scan():
 
     resp = client.delete(f"/scans/{scan_id}", headers=auth_headers(token))
     assert resp.status_code == 204
+
+
+# ---------------------------------------------------------------------------
+# Shared report links
+# ---------------------------------------------------------------------------
+
+# Helper: create a scan with internal remediation notes, to check they aren't leaked
+def create_scan(token, title="Shared finding"):
+    return client.post("/scans", json={
+        "title": title,
+        "severity": "high",
+        "affected_component": "billing-api",
+        "remediation_notes": "internal: patch scheduled for sprint 12",
+    }, headers=auth_headers(token)).json()["id"]
+
+
+# Helper: pull the raw token off the end of share_url
+def share_token_from(resp):
+    return resp.json()["share_url"].rsplit("/", 1)[-1]
+
+
+# Happy path: link works, response isn't cached and hides internal fields
+def test_share_link_without_password():
+    token = register_and_login()
+    scan_id = create_scan(token)
+
+    resp = client.post(f"/scans/{scan_id}/share", headers=auth_headers(token))
+    assert resp.status_code == 201
+    assert resp.json()["share_url"].startswith("http://localhost:8000/share/")
+
+    shared = client.get(f"/share/{share_token_from(resp)}")
+    assert shared.status_code == 200
+    assert shared.json()["title"] == "Shared finding"
+    assert shared.headers["cache-control"] == "no-store"
+    # internal fields are not exposed to external recipients
+    assert "owner_id" not in shared.json()
+    assert "remediation_notes" not in shared.json()
+
+
+# Password-protected link: missing or wrong password gets 401, correct one gets 200
+def test_share_link_with_password():
+    token = register_and_login()
+    scan_id = create_scan(token)
+    resp = client.post(f"/scans/{scan_id}/share", json={"password": "auditor-pass-1"},
+                       headers=auth_headers(token))
+    share_token = share_token_from(resp)
+
+    assert client.get(f"/share/{share_token}").status_code == 401
+    assert client.get(f"/share/{share_token}", params={"password": "wrong-pass"}).status_code == 401
+    ok = client.get(f"/share/{share_token}", params={"password": "auditor-pass-1"})
+    assert ok.status_code == 200
+
+
+# Weak link passwords are rejected at creation
+def test_share_link_rejects_short_password():
+    token = register_and_login()
+    scan_id = create_scan(token)
+    resp = client.post(f"/scans/{scan_id}/share", json={"password": "short"},
+                       headers=auth_headers(token))
+    assert resp.status_code == 422
+
+
+# IDOR check: a user can't create a share link for someone else's scan
+def test_cannot_share_another_users_scan():
+    owner = register_and_login()
+    scan_id = create_scan(owner)
+    other = register_and_login(username="mallory", email="mallory@example.com")
+
+    resp = client.post(f"/scans/{scan_id}/share", headers=auth_headers(other))
+    assert resp.status_code == 404
+
+
+# Creating a link requires a logged-in user
+def test_share_requires_authentication():
+    owner = register_and_login()
+    scan_id = create_scan(owner)
+    assert client.post(f"/scans/{scan_id}/share").status_code in (401, 403)
+
+
+# Made-up tokens get 404
+def test_unknown_share_token():
+    assert client.get("/share/not-a-real-token").status_code == 404
+
+
+# Links stop working after expires_at (time is moved by editing the row)
+def test_expired_share_link():
+    token = register_and_login()
+    scan_id = create_scan(token)
+    share_token = share_token_from(client.post(f"/scans/{scan_id}/share", headers=auth_headers(token)))
+
+    db = TestingSessionLocal()
+    link = db.query(models.ShareLink).one()
+    link.expires_at = datetime.utcnow() - timedelta(seconds=1)
+    db.commit()
+    db.close()
+
+    assert client.get(f"/share/{share_token}").status_code == 404
+
+
+# The DB holds only the SHA-256 hash, never the raw token
+def test_share_token_not_stored_in_plaintext():
+    token = register_and_login()
+    scan_id = create_scan(token)
+    share_token = share_token_from(client.post(f"/scans/{scan_id}/share", headers=auth_headers(token)))
+
+    db = TestingSessionLocal()
+    link = db.query(models.ShareLink).one()
+    db.close()
+    assert link.token_hash != share_token
+    assert len(link.token_hash) == 64

@@ -1,3 +1,5 @@
+import os
+
 DATABASE_URL = "sqlite:///./vulntracker.db"
 
 SECRET_KEY = "v3ry-s3cr3t-jwt-k3y-do-not-share"
@@ -12,3 +14,8 @@ DB_PASSWORD = "Tr@cker2024!"
 ADMIN_API_KEY = "sk-vt-prod-8f3a2b1c9d4e5f6a7b8c9d0e1f2a3b4c"
 
 NOTIFY_SERVICE_URL = "http://localhost:3001"
+
+# Share links use a configured base URL, not the client-controlled Host header (prevents host-header injection)
+PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8000").rstrip("/")
+# Share links expire 24 hours after creation
+SHARE_LINK_TTL_HOURS = 24

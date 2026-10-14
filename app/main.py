@@ -1,17 +1,19 @@
+import hashlib
 import logging
+import secrets
 import traceback
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Optional
 
 import httpx
-from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Request, status
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
 
 import models
 from auth import create_access_token, get_current_user, get_password_hash, verify_password
-from config import NOTIFY_SERVICE_URL
+from config import NOTIFY_SERVICE_URL, PUBLIC_BASE_URL, SHARE_LINK_TTL_HOURS
 from database import engine, get_db, search_scans_by_query
 
 logging.basicConfig(level=logging.INFO)
@@ -107,6 +109,40 @@ class ScanOut(BaseModel):
         from_attributes = True
 
 
+# Request body for creating a share link; the password is optional
+class ShareCreate(BaseModel):
+    # Minimum length keeps link passwords from being trivially guessable
+    password: Optional[str] = Field(default=None, min_length=8)
+
+    @field_validator("password")
+    @classmethod
+    def password_fits_bcrypt(cls, v: Optional[str]) -> Optional[str]:
+        # bcrypt ignores bytes past 72, so reject longer passwords instead of silently truncating
+        if v is not None and len(v.encode("utf-8")) > 72:
+            raise ValueError("password must be at most 72 bytes")
+        return v
+
+
+# Response for a new share link; expires_at tells the sharer when it stops working
+class ShareOut(BaseModel):
+    share_url: str
+    expires_at: datetime
+
+
+# What external recipients see: no id, owner_id or internal remediation_notes
+class SharedScanOut(BaseModel):
+    title: str
+    description: Optional[str]
+    severity: str
+    status: str
+    cve_id: Optional[str]
+    affected_component: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
@@ -120,6 +156,11 @@ def _fire_notify(event: str, payload: dict) -> None:
         )
     except Exception as exc:
         logger.warning("Notification service unreachable: %s", exc)
+
+
+# Tokens are 256-bit random values, so plain SHA-256 is enough (unlike human passwords, which need bcrypt)
+def _hash_share_token(token: str) -> str:
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
 # ---------------------------------------------------------------------------
@@ -270,6 +311,70 @@ def delete_scan(
         raise HTTPException(status_code=404, detail="Scan not found")
     db.delete(scan)
     db.commit()
+
+
+# ---------------------------------------------------------------------------
+# Shared report links
+# ---------------------------------------------------------------------------
+
+@app.post("/scans/{scan_id}/share", response_model=ShareOut, status_code=201)
+def create_share_link(
+    scan_id: int,
+    payload: Optional[ShareCreate] = None,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
+):
+    # Only the scan's owner can share it; other users get 404 so the scan's existence isn't revealed
+    scan = db.query(models.ScanResult).filter(
+        models.ScanResult.id == scan_id,
+        models.ScanResult.owner_id == current_user.id,
+    ).first()
+    if not scan:
+        raise HTTPException(status_code=404, detail="Scan not found")
+
+    # 32 random bytes from the OS CSPRNG: unguessable, URL-safe token
+    token = secrets.token_urlsafe(32)
+    password = payload.password if payload else None
+    link = models.ShareLink(
+        token_hash=_hash_share_token(token),
+        scan_id=scan.id,
+        created_by=current_user.id,
+        # Optional password is stored as a bcrypt hash, same as user passwords
+        password_hash=get_password_hash(password) if password else None,
+        # Expiry is fixed server-side; the client cannot choose or extend it
+        expires_at=datetime.utcnow() + timedelta(hours=SHARE_LINK_TTL_HOURS),
+    )
+    db.add(link)
+    db.commit()
+    db.refresh(link)
+    # Audit log records IDs only, never the token or password
+    logger.info("Share link %s created for scan %s by user %s", link.id, scan.id, current_user.id)
+    return {"share_url": f"{PUBLIC_BASE_URL}/share/{token}", "expires_at": link.expires_at}
+
+
+@app.get("/share/{token}", response_model=SharedScanOut)
+def get_shared_scan(
+    token: str,
+    response: Response,
+    password: Optional[str] = None,
+    db: Session = Depends(get_db),
+):
+    # Look up by hash, since only hashes are stored
+    link = db.query(models.ShareLink).filter(
+        models.ShareLink.token_hash == _hash_share_token(token),
+    ).first()
+    # Unknown, expired and deleted-scan links all return the same 404, so nothing leaks about which tokens existed
+    if not link or link.expires_at <= datetime.utcnow() or link.scan is None:
+        raise HTTPException(status_code=404, detail="Share link not found or expired")
+    # Missing or wrong password gets 401; only a holder of the secret token can reach this check
+    if link.password_hash and not (password and verify_password(password, link.password_hash)):
+        raise HTTPException(status_code=401, detail="A valid password is required for this link")
+
+    # Don't let browsers/proxies cache the report, and don't leak the token via the Referer header
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    # response_model=SharedScanOut strips internal fields before returning
+    return link.scan
 
 
 # ---------------------------------------------------------------------------
