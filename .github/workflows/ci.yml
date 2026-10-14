@@ -49,13 +49,9 @@ jobs:
 
   sast:
     runs-on: ubuntu-latest
+    container: semgrep/semgrep:1.140.0
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - name: Install Semgrep
-        run: pip install semgrep==1.140.0
       - name: Run SAST (fails on any finding)
         run: |
           semgrep scan --config p/python --config p/javascript \
