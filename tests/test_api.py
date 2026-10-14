@@ -310,3 +310,34 @@ def test_app_requires_jwt_secret(monkeypatch):
     # restore for the rest of the suite
     monkeypatch.setenv("JWT_SECRET_KEY", "test-only-not-a-real-secret")
     importlib.reload(config)
+
+
+# F3: a user cannot read another user's scan by id
+def test_get_scan_enforces_ownership():
+    owner = register_and_login(username="grace", email="grace@example.com")
+    scan_id = client.post("/scans", json={"title": "grace secret", "severity": "high",
+                                           "affected_component": "svc"},
+                          headers=auth_headers(owner)).json()["id"]
+    other = register_and_login(username="heidi", email="heidi@example.com")
+    resp = client.get(f"/scans/{scan_id}", headers=auth_headers(other))
+    assert resp.status_code == 404
+    assert client.get(f"/scans/{scan_id}", headers=auth_headers(owner)).status_code == 200
+
+
+# F8: an unsigned (alg=none) token is rejected, not accepted
+def test_alg_none_token_rejected():
+    import base64, json as _json
+    b = lambda d: base64.urlsafe_b64encode(_json.dumps(d).encode()).rstrip(b"=").decode()
+    forged = b({"alg": "none", "typ": "JWT"}) + "." + b({"sub": "grace"}) + "."
+    resp = client.get("/scans", headers=auth_headers(forged))
+    assert resp.status_code == 401
+
+
+# F4: the password is never written to logs
+def test_login_does_not_log_password(caplog):
+    register_and_login(username="ivan", email="ivan@example.com", password="sup3r-secret-pw")
+    with caplog.at_level("INFO"):
+        client.post("/auth/login", json={"username": "ivan", "password": "sup3r-secret-pw"})
+        client.post("/auth/login", json={"username": "ivan", "password": "wrong-pw-guess"})
+    assert "sup3r-secret-pw" not in caplog.text
+    assert "wrong-pw-guess" not in caplog.text

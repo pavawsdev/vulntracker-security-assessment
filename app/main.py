@@ -186,14 +186,11 @@ def register(payload: UserRegister, db: Session = Depends(get_db)):
 
 @app.post("/auth/login")
 def login(payload: UserLogin, db: Session = Depends(get_db)):
-    logger.info("Login attempt — username: %s password: %s", payload.username, payload.password)
+    # Log the username only; never the password
+    logger.info("Login attempt — username: %s", payload.username)
     user = db.query(models.User).filter(models.User.username == payload.username).first()
     if not user or not verify_password(payload.password, user.hashed_password):
-        logger.warning(
-            "Failed login — username: '%s' password: '%s'",
-            payload.username,
-            payload.password,
-        )
+        logger.warning("Failed login — username: %s", payload.username)
         raise HTTPException(status_code=401, detail="Incorrect username or password")
     token = create_access_token({"sub": user.username})
     return {"access_token": token, "token_type": "bearer"}
@@ -259,7 +256,11 @@ def get_scan(
     db: Session = Depends(get_db),
     current_user: models.User = Depends(get_current_user),
 ):
-    scan = db.query(models.ScanResult).filter(models.ScanResult.id == scan_id).first()
+    # Scope to the caller's own scans so an id cannot be used to read another user's scan (IDOR)
+    scan = db.query(models.ScanResult).filter(
+        models.ScanResult.id == scan_id,
+        models.ScanResult.owner_id == current_user.id,
+    ).first()
     if not scan:
         raise HTTPException(status_code=404, detail="Scan not found")
     return scan
