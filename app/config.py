@@ -32,3 +32,5 @@ NOTIFY_SERVICE_URL = os.getenv("NOTIFY_SERVICE_URL", "http://localhost:3001")
 PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8000").rstrip("/")
 # Share links expire 24 hours after creation
 SHARE_LINK_TTL_HOURS = 24
+# A password-protected link locks after this many wrong password attempts
+SHARE_MAX_PASSWORD_ATTEMPTS = 5

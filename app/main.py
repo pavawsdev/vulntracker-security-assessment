@@ -6,14 +6,14 @@ from datetime import datetime, timedelta
 from typing import List, Optional
 
 import httpx
-from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Request, Response, status
+from fastapi import BackgroundTasks, Depends, FastAPI, Header, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
 
 import models
 from auth import create_access_token, get_current_user, get_password_hash, verify_password
-from config import NOTIFY_SERVICE_URL, PUBLIC_BASE_URL, SHARE_LINK_TTL_HOURS
+from config import NOTIFY_SERVICE_URL, PUBLIC_BASE_URL, SHARE_LINK_TTL_HOURS, SHARE_MAX_PASSWORD_ATTEMPTS
 from database import engine, get_db, search_scans_by_query
 
 logging.basicConfig(level=logging.INFO)
@@ -357,6 +357,9 @@ def create_share_link(
 def get_shared_scan(
     token: str,
     response: Response,
+    # Prefer the password in a header (kept out of logs/history); the query param
+    # is a documented fallback for simple link sharing (see README).
+    x_share_password: Optional[str] = Header(default=None),
     password: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
@@ -367,9 +370,20 @@ def get_shared_scan(
     # Unknown, expired and deleted-scan links all return the same 404, so nothing leaks about which tokens existed
     if not link or link.expires_at <= datetime.utcnow() or link.scan is None:
         raise HTTPException(status_code=404, detail="Share link not found or expired")
-    # Missing or wrong password gets 401; only a holder of the secret token can reach this check
-    if link.password_hash and not (password and verify_password(password, link.password_hash)):
-        raise HTTPException(status_code=401, detail="A valid password is required for this link")
+
+    if link.password_hash:
+        # Lock the link after too many wrong guesses, so the password can't be brute-forced
+        if link.failed_attempts >= SHARE_MAX_PASSWORD_ATTEMPTS:
+            raise HTTPException(status_code=429, detail="Too many attempts; this link is locked")
+        supplied = x_share_password or password
+        if not (supplied and verify_password(supplied, link.password_hash)):
+            link.failed_attempts += 1
+            db.commit()
+            raise HTTPException(status_code=401, detail="A valid password is required for this link")
+        # Reset the counter on success
+        if link.failed_attempts:
+            link.failed_attempts = 0
+            db.commit()
 
     # Don't let browsers/proxies cache the report, and don't leak the token via the Referer header
     response.headers["Cache-Control"] = "no-store"

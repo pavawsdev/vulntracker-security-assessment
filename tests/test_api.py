@@ -341,3 +341,29 @@ def test_login_does_not_log_password(caplog):
         client.post("/auth/login", json={"username": "ivan", "password": "wrong-pw-guess"})
     assert "sup3r-secret-pw" not in caplog.text
     assert "wrong-pw-guess" not in caplog.text
+
+
+# F11: the share password can be supplied via header, not only the query string
+def test_share_password_via_header():
+    token = register_and_login(username="judy", email="judy@example.com")
+    scan_id = create_scan(token)
+    resp = client.post(f"/scans/{scan_id}/share", json={"password": "auditor-pass-1"},
+                       headers=auth_headers(token))
+    share_token = share_token_from(resp)
+    ok = client.get(f"/share/{share_token}", headers={"X-Share-Password": "auditor-pass-1"})
+    assert ok.status_code == 200
+    assert ok.json()["title"] == "Shared finding"
+
+
+# F10: a password-protected link locks after repeated wrong guesses
+def test_share_password_locks_after_attempts():
+    token = register_and_login(username="mike", email="mike@example.com")
+    scan_id = create_scan(token)
+    share_token = share_token_from(
+        client.post(f"/scans/{scan_id}/share", json={"password": "auditor-pass-1"},
+                    headers=auth_headers(token)))
+    for _ in range(5):
+        assert client.get(f"/share/{share_token}", params={"password": "wrong"}).status_code == 401
+    # further attempts are locked out, even with the correct password
+    assert client.get(f"/share/{share_token}", params={"password": "wrong"}).status_code == 429
+    assert client.get(f"/share/{share_token}", params={"password": "auditor-pass-1"}).status_code == 429

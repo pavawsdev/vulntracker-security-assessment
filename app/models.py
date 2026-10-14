@@ -53,5 +53,7 @@ class ShareLink(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     # Set by the server at creation; checked on every access
     expires_at = Column(DateTime, nullable=False)
+    # Wrong-password counter; the link locks once it crosses the limit (brute-force defence)
+    failed_attempts = Column(Integer, default=0, nullable=False)
 
     scan = relationship("ScanResult")

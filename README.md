@@ -108,6 +108,8 @@ The image runs as non-root UID 10001, contains no test tooling, and has no secre
 
 **Share link URLs**: `share_url` is built from the `PUBLIC_BASE_URL` environment variable (default `http://localhost:8000`), not from the request's `Host` header, which is client-controlled and unreliable behind a proxy.
 
+**Share link password**: for a password-protected link, supply the password in the `X-Share-Password` header, which keeps it out of server logs and browser history. A `?password=` query parameter is also accepted as a fallback but is discouraged for that reason. A link locks after 5 wrong attempts.
+
 **Deploying to Kubernetes (Helm)**
 
 The chart in `helm/vulntracker` expects [External Secrets Operator](https://external-secrets.io) and a `ClusterSecretStore` backed by your secrets manager. Secrets are mounted into the pod as read-only files, never passed as environment variables.
