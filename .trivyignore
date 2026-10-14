@@ -1,0 +1,24 @@
+# Accepted/residual dependency CVEs — see docs/remediation-plan.md (F6).
+# These are consciously deferred so the SCA gate fails on NEW critical/high CVEs
+# but not on ones already triaged. Review this list when dependencies are bumped.
+
+# python-jose: no fixed version exists; mitigated by pinning a single JWT algorithm (F8).
+# Migrating off python-jose (e.g. to pyjwt) is the real fix.
+CVE-2026-85394
+
+# Transitive via express; fixed versions not yet resolvable through the express dependency tree.
+CVE-2026-90711
+CVE-2026-4867
+
+# axios: fixed in a newer release than currently pinned; tracked for the next dependency bump.
+CVE-2026-101898
+CVE-2026-101901
+CVE-2026-101905
+CVE-2026-101906
+CVE-2026-101909
+CVE-2026-67320
+
+# cryptography: fixed in a newer release than currently pinned; tracked for the next dependency bump.
+CVE-2026-69247
+CVE-2026-69249
+GHSA-537c-gmf6-5ccf
